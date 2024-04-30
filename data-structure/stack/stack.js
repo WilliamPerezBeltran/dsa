@@ -13,7 +13,7 @@ function isEmpty() {
 }
 
 function peek() {
-  return stack[length - 1];
+  return stack[stack.length - 1];
 }
 
 function size() {
