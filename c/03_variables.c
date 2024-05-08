@@ -1,3 +1,7 @@
+/*
+ * Syntax:
+		type variableName = value;
+*/
 #include <stdio.h>
 
 int main(){
