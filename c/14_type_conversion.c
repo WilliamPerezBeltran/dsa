@@ -21,6 +21,14 @@ int main(){
 	printf("%f\n", sum);
 	printf("%.1f\n", sum);
 
+  int maxScore = 5000;
+	int userScore = 420;
+	/* Calculate the percantage of the user's score
+	 * in relation to the maximum available score.
+	 * Convert userScore to float to make sure that 
+	 * the division is accurate */
 
+	float percentage = (float) maxScore * userScore;
+	printf("the percentage result is; %.3f\n",percentage);
  	return 1;
 }
