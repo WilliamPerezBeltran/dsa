@@ -11,5 +11,5 @@ int main(){
 	printf("cost per item %.1f %c\n", item_cost, currency);
 	printf(" total cost: %.2f%c\n", total, currency);
 
-	return 1;
+	return 0;
 }

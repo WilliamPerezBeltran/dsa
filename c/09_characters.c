@@ -21,5 +21,5 @@ int main(){
 	// To store multiples character use string 
  	char myText[] = "mytext hello";
 	printf("%s\n", myText);
-	return 1;
+	return 0;
 }

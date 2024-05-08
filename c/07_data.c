@@ -14,5 +14,5 @@ int main(){
 
 	area = length + width;
 	printf("%d \n", area );
-	return 1;		
+	return 0;		
 }

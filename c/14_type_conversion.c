@@ -30,5 +30,5 @@ int main(){
 
 	float percentage = (float) maxScore * userScore;
 	printf("the percentage result is; %.3f\n",percentage);
- 	return 1;
+ 	return 0;
 }

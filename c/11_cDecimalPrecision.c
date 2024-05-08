@@ -16,5 +16,5 @@ int main(){
 	printf("%.1f\n", myFloat); // only show 1 digit
 	printf("%.3f\n", myFloat); // only show 3 digit
 
-	return 1;
+	return 0;
 }

@@ -26,6 +26,6 @@ int main(){
 	printf("%c", a);
 	printf("%c", b);
 	printf("%c", c);
-	return 1;
+	return 0;
 }
 

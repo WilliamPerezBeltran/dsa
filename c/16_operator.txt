@@ -1,0 +1,43 @@
+
+
+	divides the  opearators into the following groups.
+	 * aritmetic operator
+	 * Assigment operator
+	 * Comparison opertos
+	 * Logicl operators
+	 * Bitwise operators
+	 
+	Arithmetic operator
+		+ Addition
+		- Subtraccion
+		* Multiplication
+		% Modulus 
+		++ Increment
+		-- Decrement
+
+	A list of all assignment operatos 
+	=
+	+=
+	-=
+	*=
+	/=
+	%=
+	&=
+	|=
+	^=
+	>>=
+	<<=
+
+	A list of all comparison operators:
+	==
+	!=
+	>
+	<
+	>=
+	>=
+
+	a list of logical operators
+	&&-> logical and 
+	||-> logical or 
+	! -> logical not 
+

@@ -18,5 +18,5 @@ int main(){
 	printf("%f\n", f1);
 	printf("%fl\n", d1);
 
-	return 1;
+	return 0;
 }
