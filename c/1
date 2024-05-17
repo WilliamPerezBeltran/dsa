@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+
+int main(){
+	printf("square root: sqrt()");
+	printf("√16 = %f\t\n   ",sqrt(16));
+	
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	printf("ceil= rounds a number upwards to its nearesti integer"
+	printf("√16 = %f\t\n   ",sqrt(16));
+	return 0;
+}
