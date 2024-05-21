@@ -22,6 +22,34 @@ int main(){
 	printf("%p\n", ptr1);
 	printf("%p\n", ptr2);
 
+	printf("\n");
+	int numbers[20];
+	printf("%lu\n",sizeof(numbers));
+
+	int *pp1, *pp2;
+	pp1 = malloc(sizeof(*pp1));
+	pp2 = calloc(1,sizeof(*pp2));
+
+
+	int *rare;
+	rare = calloc(4,sizeof(*rare));
+	*rare = 10;
+	rare[1] = 20;
+	rare[2] = 30;
+	rare[3] = 40;
+	int x;
+	for(x = 0;x<4;x++){
+		printf("contador %d array[%d] = %d \t\n",x,x,rare[x]);
+	};
+
+	printf("\n");
+	int *ops;
+	ops = calloc(4,sizeof(*ops));
+	int y;
+	for(y = 0;y<5;y++){
+		printf("contador %d array[%d] = %d \t\n",y,y,rare[y]);
+	};
+
 	 
 
 	return 0;
