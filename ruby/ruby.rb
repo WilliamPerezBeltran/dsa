@@ -1,4 +1,5 @@
-
+#!/usr/bin/ruby
+##       https://i-love-ruby.gitlab.io/book.html#_ranges
 10.downto -12 do |num|
 	p num
 end
@@ -209,11 +210,173 @@ p "This means if we declare symbols again and again, they won’t occupy extra s
 p "Frozen strings and symbols are good for memory. Ordinary strings are bad.".upcase
 hash = {a: 1, b: nil, c: 2, d: nil, e: 3, f:nil}
 p hash 
-#=============================== Hashes ===============================
-#=============================== Hashes ===============================
-#=============================== Hashes ===============================
-#=============================== Hashes ===============================
-#=============================== Hashes ===============================
+#=============================== Ranges ===============================
+(1..6).each{|x| p x}
+# 1..6 ==> 1 2 3 4 5 6 
+("bad".."bag").each {|a| print "#{a}, " }
+p ""
+a = -4..23
+
+p a.class
+p a.max # 23 
+p a.min # -4
+p (1..20).to_a # => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+
+mark = 45
+grade = case mark 
+when 80..90
+	'A'
+when 60..89
+	'B'
+when 40..59
+	'C'
+when 10..39
+	'D'
+else
+	"sorry no available"
+end
+p grade
+
+
+p (1..5).to_a  # => 1 2 3 4 5  INCLUSIVO = que incluye 
+p (1...5).to_a # => 1 2 3 4    EXCLUSIVO = excluye el ultimo element (no lo agrega)
+#11 in (..10)
+
+   #
+#=============================== Functions =============================
+def print_line
+	"-"*20
+end
+p print_line
+
+def print_name name="william"
+	p name 
+end
+ print_name "rasputin"
+ print_name 
+
+ def array_changer ar
+	 ar << 23
+ end
+ ar = [1,2,3,4,5]
+ p ar
+array_changer ar
+ p ar
+
+ def addition a,b
+	 sum = a + b 
+	 sum
+ end
+ p addition 3,4
+
+ def some_function a, *other
+	 p " argument other array => #{other}"
+	 p " argument first array => #{a}"
+ end 
+ some_function "first argument" ,2,3,34,34,34,34,3,43
+
+ def print_something(string)
+  puts string
+end
+
+
+#=============================== Global Variables ===============================
+$global_variable = 234
+def print_global_variable 
+	$global_variable =33 
+end
+print_global_variable
+p $global_variable #print 33
+#=============================== map, reduce, and filter ===============================
+
+asdf =  [1, 2, 3, 4, 5, 6, 7].map{|x| x**2}
+p asdf
+#=============================== variables ===============================
+=begin 
+1. Variables Locales 
+	- Definción:
+		-
+	- Sintaxis:
+		-
+	- Alcance:
+		-
+=end
+
+=begin 
+1. Variables Locales 
+	- Definción:
+		-
+	- Sintaxis:
+		-
+	- Alcance:
+		-
+=end
+=begin 
+1. Variables Locales 
+	- Definción:
+		-
+	- Sintaxis:
+		-
+	- Alcance:
+		-
+=end
+=begin 
+1. Variables Locales 
+	- Definción:
+		-
+	- Sintaxis:
+		-
+	- Alcance:
+		-
+=end
+=begin 
+1. Variables Locales 
+	- Definción:
+		-
+	- Sintaxis:
+		-
+	- Alcance:
+		-
+=end
+=begin 
+1. Variables Locales 
+	- Definción:
+		-
+	- Sintaxis:
+		-
+	- Alcance:
+		-
+=end
+#=============================== Classes & Objects ===============================
+
+class Square 
+	#enable get and set 
+	attr_accessor :side_length # it Stands for attribute accessor, which enable syou to get and set the side_length easily
+end
+
+s1 = Square.new #creates a new square 
+s1.side_length = 5 # sets its side length
+puts "Side length of s1 = #{s1.side_length}"
+
+p ""
+p ""
+
+class Square1
+	attr_accessor :side_length
+
+	def area 
+		@side_length * @side_length
+	end
+
+	def perimeter 
+		@side_length * 4 
+	end
+end 
+a = Square1.new
+a.side_length = 2
+p "area #{a.area}"
+p "perimeter #{a.perimeter}"
 #=============================== Hashes ===============================
 #=============================== Hashes ===============================
 
