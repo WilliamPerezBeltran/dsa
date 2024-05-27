@@ -293,61 +293,168 @@ p $global_variable #print 33
 asdf =  [1, 2, 3, 4, 5, 6, 7].map{|x| x**2}
 p asdf
 #=============================== variables ===============================
-=begin 
-1. Variables Locales 
-	- Definción:
-		-
-	- Sintaxis:
-		-
-	- Alcance:
-		-
-=end
+
 
 =begin 
 1. Variables Locales 
-	- Definción:
-		-
-	- Sintaxis:
-		-
-	- Alcance:
-		-
+	* Definción: 
+			- Se utiliza dento de un método , un bloque o una estructura de control 
+	
+	* Sintaxis: 
+			- Comienza con una lettra minúscula o un guion bajo 
+
+	* Alcance: 
+			- Solo son accesibles dentro del contexto en que se definen 
+
+	* Example:
+			def example_mettho
+				local_varible  = "skafj"
+				puts local_varible
+			end
 =end
+
+
+
 =begin 
-1. Variables Locales 
-	- Definción:
-		-
-	- Sintaxis:
-		-
-	- Alcance:
-		-
+2. Instance Variables  
+	* Definción: 
+			- Instance variables are avariables that are associated with a specific instance of a class.
+	 
+	* Sintaxis: 
+			- they start with an @ symbol. 
+
+	* Alcance: 
+			- Accessible within all instance methods of the class.  
+
+	* Example:
+
+			class Example 
+				def initialize name 
+					@name = name  ==> instance variable 
+				end 
+
+				def display_name 
+					puts @name 
+				end 
+			end 
+
+			example = Example.new("ruby")
+			example.display_name ==> ruby 
 =end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =begin 
-1. Variables Locales 
-	- Definción:
-		-
-	- Sintaxis:
-		-
-	- Alcance:
-		-
+3. Class Variables 
+
+* Definción: 
+			- Class variables are shared among all instances of a class. 
+ 	
+	* Sintaxis: 
+			- They start with @@ 
+
+	* Alcance: 
+			- Accessible within class methods and instance methods of the class. 
+
+	* Example:
+
+
+    	Class Example 
+			 	@@class_variable = 0
+
+				def initialize
+					@@class_variable += 1
+				end
+
+				def self.count
+					@@class_variable 
+				end 
+
+
+	    end
+
+			example1 = Example.new 
+			example2 = Example.new 
+			puts Example.count // ==> 2
+
 =end
+
 =begin 
-1. Variables Locales 
-	- Definción:
-		-
-	- Sintaxis:
-		-
-	- Alcance:
-		-
+
+
+
+4. Global Variables  
+
+* Definción: 
+			- Global variables are accessible from anywhere int ethe ruby program.
+	
+	* Sintaxis: 
+			- They start with $ 
+
+	* Scope: 
+			- Accessible globally throughout the program. 
+
+	* Example:
+			$global_variable = 23
+
+			def display_global 
+				puts $global_variable
+			end
+
+			display_global // ====> 23
 =end
+
+
+
+
+
 =begin 
-1. Variables Locales 
-	- Definción:
-		-
-	- Sintaxis:
-		-
-	- Alcance:
-		-
+1. Constants Variables
+	
+	* Definition: 
+			- Constants are variables that are intended to remain unchanged. 
+	
+	* Syntax: 
+			- They start with a capital letter. 
+
+	* Scope: 
+			- Accessible within the class or module the are defined in, and ca be accessed globally if prefixed
+			with the class or module name.
+
+	* Example:
+
+			class Example
+				CONSTANT = "I'm a constant"	
+
+				def display_constant
+					puts CONSTANT 
+				end
+
+			end
+
+
+		example = Example.new 
+		example.displat_constant ======>> "I'm a constant"	 
+
+
 =end
+
+
+
+
+
 #=============================== Classes & Objects ===============================
 
 class Square 
