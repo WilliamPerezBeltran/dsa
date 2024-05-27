@@ -343,19 +343,6 @@ p asdf
 =end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 =begin 
 3. Class Variables 
 
@@ -391,9 +378,8 @@ p asdf
 
 =end
 
+
 =begin 
-
-
 
 4. Global Variables  
 
@@ -416,12 +402,8 @@ p asdf
 			display_global // ====> 23
 =end
 
-
-
-
-
 =begin 
-1. Constants Variables
+5. Constants Variables
 	
 	* Definition: 
 			- Constants are variables that are intended to remain unchanged. 
@@ -448,11 +430,22 @@ p asdf
 		example = Example.new 
 		example.displat_constant ======>> "I'm a constant"	 
 
-
 =end
 
+=begin
+6. Block Variables
+		Definition: 
+			Block variables are variables that are used within blocks, such as those passed to methods like each.
+		Syntax: 
+			Like local variables, they start with a lowercase letter or an underscore (_).
+		Scope: 
+			Only accessible within the block.
 
+[1, 2, 3].each do |block_variable|
+  puts block_variable
+end
 
+=end
 
 
 #=============================== Classes & Objects ===============================
@@ -484,7 +477,228 @@ a = Square1.new
 a.side_length = 2
 p "area #{a.area}"
 p "perimeter #{a.perimeter}"
-#=============================== Hashes ===============================
+
+
+#private methods
+
+class Human 
+	attr_accessor :name ,:age
+
+	def prints_something
+		p "arguments: #{name} #{age}"
+	end
+	private
+		def secrets 
+			p "the secrets"
+		end
+end 
+
+example = Human.new 
+example.name = "william "
+example.age = 23
+example.prints_something
+example.prints_something
+
+
+class Person 
+	def initialize 
+		randon_number = self.random
+	end 
+
+	def random
+		Random.new.rand(12...45)
+	end 
+end
+
+person = Person.new
+p person.random
+p person.random
+p person.random
+p person.random
+# inheritance
+
+class Father
+	attr_accessor :name 
+	def initialize name
+		@name = name 
+	end
+
+	def father_name
+		@name 
+	end 
+end 
+
+
+
+class Son < Father 
+	attr_accessor :son_name
+	def initialize son_name
+		@son_name = son_name 
+	end 
+
+	def name_son
+		 @son_name
+	end
+
+	def both_name 
+		"both names #{@son_name } and #{@name}"
+	end 
+
+end 
+father = Father.new "jose"
+hijo = Son.new "William"
+p father.father_name
+p hijo.name_son
+p hijo.both_name
+p hijo.father_name
+
+
+
+
+class Figure
+	attr_accessor :stroke, :fill
+end 
+
+class Circle < Figure
+	attr_accessor :radius
+end
+c1 = Circle.new
+c1.stroke = "stroke" 
+c1.fill = "fill" 
+c1.radius = 23
+
+p " #{c1.stroke} #{c1.fill} #{c1.radius} "
+
+class Employe
+  def salary
+    puts "Calculando salario"
+  end
+end
+
+class Manager < Employe
+  def salary
+    puts "Calculando bonos"
+    super # esta línea llama el método salary de Employee
+  end
+end
+
+manager = Manager.new
+manager.salary
+
+module MyModule
+	MAX_CONNECTIONS = 5
+
+	def metodo_1
+			p "metodo 1"
+	end
+
+	def metodo_2
+			p "metodo 2"
+	end
+
+	def metodo_3
+			p "metodo 3"
+	end
+
+	class Clase_1
+		def metodo_clase_1
+			p "metodo de la clase 1"
+		end
+	end
+
+	class Clase_2
+		def metodo_clase_2
+			p "metodo de la clase 2"
+		end
+	end
+
+end
+
+p MyModule::MAX_CONNECTIONS
+clase1 = MyModule::Clase_1.new
+clase1.metodo_clase_1
+
+
+
+module Greeting 
+	def self.metodo
+		"self metodos"
+	end
+end 
+p Greeting.metodo
+
+
+
+module Apellidos
+	def primer_apellido
+		"perez beltran"
+	end
+end
+
+class Apellido
+	include Apellidos
+end
+
+apellido = Apellido.new
+p apellido.primer_apellido
+
+apellido1 = Apellido.new
+
+
+class AnotherClassApellido
+end
+ole = AnotherClassApellido.new
+ole.extend(Apellidos)
+ole.primer_apellido
+
+
+p "======="
+p "======="
+
+module Grey
+	def hello
+		"hello"
+	end
+end
+
+class Name 
+	include Grey
+end
+
+class Opp 
+	extend Grey
+end
+
+o = Name.new
+p o.hello # hace el llamado en la instancia de la clase 
+
+p  Opp.hello # hace el llamado en la clase 
+
+
+module System
+	module Currency
+		class Dollar
+		end
+	end
+end
+System::Currency::Dollar.new # way to get access to class Dollar 
+ 
+
+#=============================== Excepciones =============================== 
+begin 
+1 / 0 
+rescue 
+	p "it not allow divide into zero"
+end
+
+begin 
+1 / 0 
+rescue => e
+	p e
+	p e.public_method
+end 
+
+
 #=============================== Hashes ===============================
 
 
