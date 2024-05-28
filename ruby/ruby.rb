@@ -698,6 +698,22 @@ rescue => e
 	p e.public_method
 end 
 
+class PermissionDeniedError < StandardError
+  attr_reader :action
+
+  def initialize(message, action)
+    # Call the parent's constructor to set the message
+    super(message)
+
+    # Store the action in an instance variable
+    @action = action
+  end
+end
+
+# Cuando alguien trate de borrar algo sin permiso podrías
+# hacer algo así:
+raise PermissionDeniedError.new("Permission Denied", :delete)
+
 
 #=============================== Hashes ===============================
 
