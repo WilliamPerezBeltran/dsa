@@ -904,7 +904,7 @@ puts
 
 class SomeClass
 	attr_accessor :a, :b
-	public 
+	
 	def public_method_1
 	end
 
@@ -912,7 +912,7 @@ class SomeClass
 	end
 
 	private 
-	def private_method_1
+	def private_method_1 
 	end
 
 	def private_method_2
@@ -951,8 +951,25 @@ p object.protected_methods.join(", ")
 
 
 
+#=============================== mixin ===============================
+#=============================== Reflection===============================
 
+module Constants
+  Pi = 22.0 / 7
+end
 
+class Circle
+  include Constants
+  attr_accessor :radius
+
+  def area
+    Pi * radius * radius
+  end
+end
+
+circle = Circle.new
+circle.radius = 5  # Establecer el radio del círculo
+puts circle.area  # Calcular y mostrar el área del círculo
 
 
 
