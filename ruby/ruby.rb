@@ -684,15 +684,96 @@ end
 System::Currency::Dollar.new # way to get access to class Dollar 
  
 
+#=============================== Overriding Methods ============================== 
+
+class A
+	def myMethod
+		p "method A class "
+	end 
+end 
+
+
+class B < A
+	def myMethod
+		p "method B class "
+	end 
+end 
+
+a = A.new
+b = B.new
+a.myMethod
+b.myMethod
+
+p ""
+p ""
+
+
+
+#=============================== The super function ===============================
+p "the super funcion "
+
+class Rectangulo 
+	def set_dimension ancho, largo 
+		@ancho = ancho
+		@largo = largo  
+	end
+	def area 
+		@ancho * @largo 
+	end
+end 
+
+class Cuadrado < Rectangulo
+	def set_dimension(ancho, largo)
+		super(ancho,largo)
+	end 
+end
+cuadrado = Cuadrado.new
+cuadrado.set_dimension(2,3) 
+p cuadrado.area
+
+class G
+	def initialize name, last_name, age
+		@name, @last_name, @age  = name, last_name, age
+	end
+
+	def show_variables
+		p "   ====>    #{@name} #{@last_name} #{@age}" 
+	end
+
+	def set_another_function x
+		@x = x 
+	end
+	
+	def get_another_function
+		p "asdf: #{@x}"
+	end
+end 
+
+class H < G
+	def initialize name, last_name, age
+		super(name, last_name, age)
+	end
+	
+	def set_another_function x
+		super(x)
+	end
+end
+p "========================="
+p "========================="
+p "========================="
+h = H.new "robert", "jose", 23
+h.show_variables
+h.set_another_function 10000 
+h.get_another_function
 #=============================== Excepciones =============================== 
 begin 
-1 / 0 
+#1 / 0 
 rescue 
 	p "it not allow divide into zero"
 end
 
 begin 
-1 / 0 
+#1 / 0 
 rescue => e
 	p e
 	p e.public_method
@@ -712,20 +793,161 @@ end
 
 # Cuando alguien trate de borrar algo sin permiso podrías
 # hacer algo así:
-raise PermissionDeniedError.new("Permission Denied", :delete)
+#raise PermissionDeniedError.new("Permission Denied", :delete)
 
 
-#=============================== Hashes ===============================
+#=============================== reflection ===============================
+
+# reflection.rb
+
+class Someclass
+  attr_accessor :a, :b
+
+  private
+  # A dummy private method
+  def private_method
+  end
+
+  protected
+  # A dummy protected method
+  def protected_method
+  end
+
+  public
+  # A dummy public method
+  def public_method
+  end
+end
+
+something = Someclass.new
+something.a = 'a'
+something.b = 123
+puts "something belongs to #{something.class}"
+puts
+puts "something has the following instance variables:"
+puts something.instance_variables.join(', ')
+puts
+puts "something has the following methods:"
+puts something.methods.join(', ')
+puts
+puts "something has the following public methods:"
+puts something.public_methods.join(', ')
+puts
+puts "something has the following private methods:"
+puts something.private_methods.join(', ')
+puts
+puts "something has the following protected methods:"
+puts something.protected_methods.join(', ')
+
+
+
+#=============================== Private, Public, protected in inherintance================
+puts 
+puts 
+puts 
+puts 
+class A 
+	def public_method
+		p "public method of Parent class"
+	end
+
+	private
+	def private_method
+		p "private method of A"
+	end
+
+	def private_method_1
+		p "private method of A"
+	end
+
+
+	protected
+	def protected_method
+		p "protected methdod  of Parent class"
+	end
+end
+
+class B < A
+	def get_private_methods
+		private_method 
+		private_method_1
+	  "public method called from B class "
+		protected_method
+		self.protected_method
+	end
+
+	
+	def get_protected_methods
+		protected_method
+		self.protected_method
+	end
+end
+
+b = B.new
+p b.get_private_methods
+p b.get_protected_methods
 
 
 
 
+#=============================== Reflection===============================
+puts
+puts
+puts
+=begin
+	.class
+	.instance_variables
+	.public_methods
+	.private_methods
+	.protected_methods
+=end
 
+class SomeClass
+	attr_accessor :a, :b
+	public 
+	def public_method_1
+	end
 
+	def public_method_2
+	end
 
+	private 
+	def private_method_1
+	end
 
+	def private_method_2
+	end
 
+	protected 
+	def protected_method_1
+	end
+	
+	def protected_method_1
+	end
+end
 
+object = SomeClass.new
+object.a = "a"
+object.b = 100 
+
+p "tipo del objecto"
+p object.class 
+puts 
+p "Variables de instancia del objeto"
+p object.instance_variables.join(", ")
+
+puts 
+p "Metodos publicos del objeto"
+p object.public_methods.join(", ")
+
+puts 
+p "Metodos privados del objecto"
+p object.private_methods.join(", ")
+
+puts 
+puts 
+p "Metodos protegidos del objecto"
+p object.protected_methods.join(", ")
 
 
 
