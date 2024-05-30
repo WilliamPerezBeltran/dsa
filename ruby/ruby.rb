@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 ##       https://i-love-ruby.gitlab.io/book.html#_ranges
+#https://makeitrealcamp.gitbook.io/guias-de-make-it-real/programacion-orientada-a-objetos-en-ruby/excepciones
 10.downto -12 do |num|
 	p num
 end
@@ -290,9 +291,7 @@ print_global_variable
 p $global_variable #print 33
 #=============================== map, reduce, and filter ===============================
 
-asdf =  [1, 2, 3, 4, 5, 6, 7].map{|x| x**2}
-p asdf
-#=============================== variables ===============================
+
 
 
 =begin 
@@ -970,6 +969,87 @@ end
 circle = Circle.new
 circle.radius = 5  # Establecer el radio del círculo
 puts circle.area  # Calcular y mostrar el área del círculo
+
+
+#===============================  Proc, Lambdas and Blocks ===============================
+
+my_proc = Proc.new do 
+	p "hellos"
+
+end 
+my_proc.call
+my_proc.call
+
+my_procc = Proc.new do |name| 
+	p "hey name #{name}"
+end
+my_procc.call "wallas"
+ 
+
+def execute_proc myProc, name 
+	myProc.call name 
+end
+execute_proc my_procc,"willy"
+# Returning Proc from function
+def return_proc
+	Proc.new do |name|
+		p "the name #{name}"
+	end
+end
+
+my_proccc = return_proc
+my_proccc.call "rastas"
+
+my_lambda = lambda do 
+	puts "i am a lambda"
+end
+my_lambda.call
+
+my_anotyher_lambda = lambda { puts "i am  another lambda"}
+my_anotyher_lambda.call
+
+x = lambda { puts "i am  another lambda"}
+x.call
+
+r = Proc.new{ puts "mmmmmmmmmmmmmmmmm"}
+r.call
+
+
+get =	lambda do |num|	
+	p num 
+end
+get.call [1,2,3,4]
+
+mi_lambda = lambda { |x| puts "Hola #{x}" }
+mi_lambda.call "robert"
+									
+mi_lambda =->(x){puts "hola #{x}"} 
+mi_lambda.call "tranque"
+
+array = [1,2,3,4,5,6,8,8]
+duplicar = ->(x){x*2}
+p array.map(&duplicar)
+									
+p array.map{|x| x*2}
+
+=begin
+Lambda:
+
+Una función anónima que se comporta como un método, con un manejo estricto de argumentos y un return que solo sale de la lambda.
+Se crea con lambda o ->.
+Proc:
+
+Un objeto que encapsula un bloque de código, con flexibilidad en el número de argumentos y un return que sale del método envolvente.
+Se crea con Proc.new o proc.
+
+=end
+
+
+
+
+
+
+
 
 
 
