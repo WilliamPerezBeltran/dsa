@@ -1046,7 +1046,7 @@ Se crea con Proc.new o proc.
 
 
 
-
+require 'digest'
 
 
 
