@@ -1046,20 +1046,166 @@ Se crea con Proc.new o proc.
 
 
 
+#===============================  Proc, Lambdas and Blocks ===============================
+=begin
 require 'digest'
 
+functional programming: the theory
+
+- No mutable data ( no side effects)
+- No state (no implicit,hidden state)
+
+once assigned (value binding), a "variable" (a simbol)
+doesn't change its value 
+
+functions are pure functions in the mathematical sense:
+their output depend only in their inputs,
+there is no "enviroment".
+
+* Therefore we'll have the same output for calls with the same parameters.
+* This allow cool things as:
+	- Memoization: Spped up computation by saving results for previous function calls.
+	- idempotence: Same result regardless how many times you call a function.
+	In math idempotence is the property that  when multiplied by itself
+	the same element is obtained again.
+		1 * 1 = 1 
+- Insanity: Doing the same thing over and over again and expecting different results.
+-Parallelization
+	* function calls are independent.
+	* We can parallelize in different rpcesses /CPUs/computers/...
+	
+	result = fun1(a,b) + fun2(a,c)
+
+	We can execute fun1 and fun2 in parallel ( a won't be modified)
+
+- Concurrence 
+ 	With no shared data , concurrence gets a lot simpler:
+ 	* No semapfores
+ 	* No monitors 
+  * No locks 
+  * No race-conditions
+  * No dead-locks
+
+- Easier debugging 
+	* If you have global state:
+		- Functions depend on their inputs and the whole stte. Hard to debug.
+		- Wjen thins fo awry, you cannot see the evolution of values ( old data was probably overriden )
+
+	* In functional programming:
+		- Functions ca be tested in isolation
+		- The steps in computation can be easily followed.
+
+- Modularity and composition 
+	global state spreads complexity all over the code base. Instead, you should use take advantage of:
+	 * Modulatiy: Light couplng between modules. 
+	 * Compositionality: Easy to connect modules and make them work cooperatively.
+	 * Bottom-up programming: Write the base elements first and go up inte the abstraction layer.
+	 "PROGRAMMING IS BUILDING ABSTRACTIONS AND EXPRESSING IDEAS "
+
+All right but apart from referential transparency, parallelization, easier debugging and modulatization... 
+what has Functional Progamming ever done for us ?
+
+You'll write more elegant, concise, easier to understand, maintaibable code. 
+let's see how. 
 
 
+But seriously, functional programming in ruby ?
+	* Ok , ruby is a imperative language...
+	* ... But we still can apply functional priciples.
+	* In ruby you cannot assure immutability, it 's basically a programmer's choice 
+
+Don't update, create
+	* Use persistent data strctures.
+	* If you nned to change an object, don't modigy it in -place, create new one.
+
+=end
+
+# do not update, create: strings 
+movie = "the apartament"
+movie = "#{movie} (by billy wilder)"
+movie = "#1960 #{movie}"
+
+# Yes 
+movie = "The Apartment"
+movie_with_director = "#{movie} (by billy wilder)"
+complete_movie = "#1960 #{movie}"
+
+#Don't update, create: array
+#No:
+ years = [1,2]   # => [1,2]
+ years << 3      # => [1,2,3]
+ year += [4,5]   # => [1,2,3,4,5]
+
+ #Yes
+ #
+ years_ = [1,2]
+all_years_ = years_ + [3] + [4,5]
 
 
+#Don't update, create: hashes
+#No: 
+ages = {"wallas" => 39}
+ages["paul" =>34]
+p ages # {"wallas" => 39,"paul" =>34}
+#Yes
+ages_ = 
+ages_ = {"wallas" => 39}
+ages_.merge("paul" =>34)
+p ages_ # {"wallas" => 39,"paul" =>34}
+
+#Don't update, create: hashes
+#No: 
+#Yes
+
+#Don't update, create: hashes
+#No: 
+#Yes
+
+#Don't update, create: hashes
+#No: 
+#Yes
+
+#Don't update, create: hashes
+#No: 
+#Yes
+
+#Don't update, create: hashes
+#No: 
+#Yes
+Blocks as higher-order functions 
+we need to remenber the concept of higher-order functions:
+	A higher order functions is a function that does at least one of the following:
+	- Takes one or more functions as aguments.
+	- Return a function as its result.
 
 
+* You can also return functions (well, blocks):
+
+def get_addrer(value)
+	proc{|x| x + value}
+end
+adder5 = get_adder(5)
+adder5.call(2) # 7
+adder5.call(4) # 9
+=begin
+=end
 
 
+=begin
+=end
 
 
+=begin
+=end
 
+=begin
+=end
 
+=begin
+=end
+
+=begin
+=end
 
 
 
