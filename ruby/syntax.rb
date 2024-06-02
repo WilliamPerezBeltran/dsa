@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 ##       https://i-love-ruby.gitlab.io/book.html#_ranges
 #https://makeitrealcamp.gitbook.io/guias-de-make-it-real/programacion-orientada-a-objetos-en-ruby/excepciones
+#https://womanonrails.com/functional-programming-ruby
 10.downto -12 do |num|
 	p num
 end
@@ -1134,7 +1135,7 @@ complete_movie = "#1960 #{movie}"
 #No:
  years = [1,2]   # => [1,2]
  years << 3      # => [1,2,3]
- year += [4,5]   # => [1,2,3,4,5]
+ years += [4,5]   # => [1,2,3,4,5]
 
  #Yes
  #
@@ -1172,6 +1173,8 @@ p ages_ # {"wallas" => 39,"paul" =>34}
 #Don't update, create: hashes
 #No: 
 #Yes
+
+=begin
 Blocks as higher-order functions 
 we need to remenber the concept of higher-order functions:
 	A higher order functions is a function that does at least one of the following:
@@ -1181,19 +1184,165 @@ we need to remenber the concept of higher-order functions:
 
 * You can also return functions (well, blocks):
 
-def get_addrer(value)
+=end
+def get_adder(value)
 	proc{|x| x + value}
 end
 adder5 = get_adder(5)
 adder5.call(2) # 7
 adder5.call(4) # 9
 =begin
+
+Block as higher-order functions
+ * Variables hold values, functions hold behaviours.
+ * Think of a function just like another type:
+ 
 =end
+
+a = 12 # a::Integer
+b = 12.3 # b::Float
+c = "hello" # c::String
+d =  [1,2,3,"rt"] # d::Array
+pa = proc{|a,b| a + b} # p::[Numeric, Numeric] -> Numeric
+puts pa.call(1,2)
+
+class Car 
+	def collision?(other_cars)
+		# ...
+	end
+end
+
+#  Car#collision? :: [Car] -> Boolean
+
+
+# Higher-order funcionst: map 
+#No: 
+output = []
+[1,2,3,4,5].each do |x|
+	output << x*2
+end
+output # [2,4,6,8,10]
+
+#Yes
+output = [1,2,3,4,5].map{|x| x*2} 
+p output # [2,4,6,8,10]
+#in ruby map and collect are the same method
+
+
+
+# Higher-order functions: select 
+#No: 
+output = []
+[1,2,3,4,5].each do |x|
+	output << x*1 if x > 2
+end
+p output # [6,8,10]
+#Yes
+output = [1,2,3,4,5].select{|x| x > 2 }
+p output # [3,4,5]
+
+
+
+# Higher-order function: detect 
+#No: 
+output = nil
+[1,2,3,4,5].each do |x|
+	if x > 2
+		output = x
+		break
+	end
+end
+p output
+#Yes
+output = [1,2,3,4,5].detect{|x| x > 2 }
+p output # [3,4,5]
+
+
+# Higher-order function: inject
+#No: 
+total = 0
+[1,2,3,4,5].each do |x|
+	total += x
+end
+p total # 15
+#Yes
+total = [1,2,3,4,5].inject(0){|acc,x|acc + x }
+p total # 15
+
+total = [1,2,3,4,5].inject(:+)
+p total # 15
+
+
+
+# Higher-order functions: zip 
+#No: 
+xs = [1,2,3]
+ys = [:a,:b,:c]
+output = []
+0.upto(xs.size - 1).each do |idx|
+	output << [xs[idx],ys[idx]]
+end
+p output
+#Yes
+xs = [1,2,3]
+ys = [:a,:b,:c]
+output = xs.zip(ys)
+p output
+
+
+
+# Example: Enumerable to hash 
+values = ["rides","bicy","moto"]
+length = {}
+values.each do |item| 
+	length[item] = item.length
+end
+p length #{"rides"=>5, "bicy"=>4, "moto"=>4}
+
+def mash array
+	Hash[array.map{ |item| [item, item.length] }]
+end
+puts "mio"
+p mash(["rides","bicy","moto"]) #{"rides"=>5, "bicy"=>4, "moto"=>4}
+
+#with facets' mash:
+#length = ["rides","bicy","moto"].mash{|s| [s,s.length]}
+
+
+
+
+# Higher-order function: map 
+#No: 
+#Yes
 
 
 =begin
+#Don't update, create: hashes
+#No: 
+#Yes
+
 =end
 
+#Don't update, create: hashes
+#No: 
+#Yes
+
+
+#Don't update, create: hashes
+#No: 
+#Yes
+
+#Don't update, create: hashes
+#No: 
+#Yes
+
+#Don't update, create: hashes
+#No: 
+#Yes
+
+#Don't update, create: hashes
+#No: 
+#Yes
 
 =begin
 =end
