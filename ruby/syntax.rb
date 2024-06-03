@@ -1428,3 +1428,97 @@ end
 
 #Don't update, create: hashes
 #No: 
+
+#=============================== memoization ===============================
+# * Thanks to referential transparency we can sabe previous results.
+# * Lots of gems: memoize, simple-memoize, sometimes.memoize, dirty-memoize, ...
+
+module Math
+	def self.fibs(n)
+		n <= 1 ? n : fibs(n-1) + fibs(n-2)
+	end
+end
+p Math::fibs(35)
+
+
+#=============================== Narrow down the scope by immutability =========================
+def render title
+	#....
+end
+
+@title = "the apartment"
+#20 lines of code here
+render(@title)
+
+=begin
+If you don't honor immutability, what's the values of @title when render is called? Easy:
+	* Check these 20 lines, maybe @title was changed there.
+	* And now... check (recursively) ALL the code called in this fragment to see if @title 
+		was modified somewhere, why, and under which conditions. Happy debugging !
+ 
+=end
+
+
+#=============================== Recursion =========================
+=begin
+If you don't honor immutability, what's the values of @title when render is called? Easy:
+* Purele functinal languages have no imperative for-loops, so the use recusion a lot.
+	* If every recursion created an stack, it would blow up very soon.
+	* Tail-call optimization (TCO) avoids creating a
+	  new stack when the last call in a recursion is the function itself.
+	* TCO is optional in Ruby: you cannot rely on it in you code if you want 
+		to use it everywhere.
+	
+	
+	To envalbe TCO in MRI-19	
+	RubyVM::InstructionSequenece.compile_option = {
+		:tailcall_optimization => true,	
+		:trace_instruction => false,	
+	}
+
+Simple example
+
+module Math
+	def self.factorial_tco(n,acc=1)
+		n <= 1 ? acc :factorial_tco(n-1),n*acc)
+	end
+end
+p Math::fibs(35)
+
+=end
+
+class Node 
+	# has_many :children, :class_name => "Node"
+	def all_children
+		self.children.flat_map do |child|
+			[child] + child.all_children
+		end
+	end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
