@@ -1308,6 +1308,109 @@ p mash(["rides","bicy","moto"]) #{"rides"=>5, "bicy"=>4, "moto"=>4}
 #with facets' mash:
 #length = ["rides","bicy","moto"].mash{|s| [s,s.length]}
 
+#=============================== Yield ===============================
+# yield 
+def greet
+	p "hello"
+	yield
+	p "bye"
+end
+
+greet{puts "middle"}
+
+
+def greet1 name 
+	p "1"
+	yield(name)
+	p "2 #{name}"
+end
+
+greet1("alice"){|x| puts "middle middle "}
+
+
+p ""
+p ""
+
+def greet2 name
+	p "hello2"
+	if block_given?
+		yield(name)
+	else
+		puts " no block"
+	end
+	puts "end"
+end
+greet2("william-no-block")
+puts 
+puts 
+greet2("will-block"){|n| puts "into block #{n}"}
+puts 
+puts 
+puts 
+def repeat n
+	n.times{yield}
+end
+
+repeat(3){puts "times"}
+
+# 5. Usando yield para Iteradores Personalizados
+
+class MyCollection
+	def initialize(*elements)
+		@elements = elements
+	end
+
+	def each
+		for element in @elements
+			yield element
+		end
+	end
+end
+
+collection = MyCollection.new(1,2,3,4,5)
+collection.each{|element| puts element}
+
+# 6. Retornando Valores desde el Bloque
+def calculate
+	result = yield(3,10)
+	puts " the result is: #{result}"
+end
+
+calculate{|x, y| x + y }
+
+# 7. Uso Avanzado con Bloques Anidados
+def outer
+	puts "outer"
+	yield
+end
+
+def inner
+	puts "inner"
+	yield
+end
+
+outer do 
+	inner do 
+		puts "In the block"
+	end
+end
+
+#=============================== end-Yield ===============================
+
+# Example: Enumerable to hash 
+# My own version of mash method in ruby 
+module Enumerable 
+	def mash
+		hash = {}
+		each do |item|
+			key, value = yield(item)
+			hash[key] = value
+		end
+		hash
+	end
+end
+
+["rides","bicy","moto"].mash{|x| [x,x.length]}  #{"rides"=>5, "bicy"=>4, "moto"=>4}
 
 
 
@@ -1325,54 +1428,3 @@ p mash(["rides","bicy","moto"]) #{"rides"=>5, "bicy"=>4, "moto"=>4}
 
 #Don't update, create: hashes
 #No: 
-#Yes
-
-
-#Don't update, create: hashes
-#No: 
-#Yes
-
-#Don't update, create: hashes
-#No: 
-#Yes
-
-#Don't update, create: hashes
-#No: 
-#Yes
-
-#Don't update, create: hashes
-#No: 
-#Yes
-
-=begin
-=end
-
-=begin
-=end
-
-=begin
-=end
-
-=begin
-=end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
