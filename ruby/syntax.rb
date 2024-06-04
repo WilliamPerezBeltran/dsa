@@ -1496,6 +1496,78 @@ class Node
 	end
 end
 
+puts puts puts 
+#=============================== Section 1: Block =========================
+
+#Blocks area like closures, because the can refer to variables from
+#their defining context:
+
+#los bloques son como closures porque pueden hacer referencia a variables desde su contexto definido
+
+def thrice 
+	yield
+	yield
+	yield
+end
+x = 5 
+puts "x before #{x}" # x = 5
+thrice{ x +=1 }
+puts x
+puts "x #{x}" # x = 8
+
+puts 
+puts 
+puts 
+
+# a block refers to variables in the conext it was defined, not the context in which it is called:
+
+def thrice_with_local_x
+	x = 100
+	yield 
+	yield 
+	yield 
+end
+
+x = 5
+puts "before #{x} == 5 " # x = 5
+thrice_with_local_x{ x += 1  }
+puts "after #{x}  " # x = 8
+
+# Ablck only refers to *existing* variables in the oter context; if the 
+# don't exist in teh outer, a block won't create them there:
+
+thrice do
+	y = 10 
+	puts "Is y defined inside the block where it is first set ?"
+	puts "yes " if defined? y 
+end	
+puts "Is y defined inte oter context after being set in the clock ? "
+puts "No !" unless defined? y
+
+def six_times(&block)
+  thrice(&block)
+  thrice(&block)
+end
+ 
+x = 4
+six_times { x += 10 }
+puts "value of x after: #{x}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

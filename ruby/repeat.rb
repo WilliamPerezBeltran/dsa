@@ -155,3 +155,37 @@ outer do
 		puts "we are in "
 	end 
 end
+
+
+def more_practice
+	yield
+end
+array = [10,20,30,40,50]
+ia = more_practice {
+	array.map{|num| num * 2 }
+}
+
+puts ia 
+
+def student
+	p "Strudent in "
+	yield 
+end
+
+student{
+	puts "we are in the block"
+	
+	students = 0 
+	while students < 10 
+		p "student number #{students}"
+		students += 1
+	end
+	puts "#{students} students jut crossed the street"
+}
+
+
+# yield is used inside of a method definition to say “hold on! I’ve got some code I need to run first”. 
+# The code that yield is a block of code that you pass in when you call that method. It’s super useful in 
+# allowing us flexibility within our code, depending on whatever our needs are at that time.
+
+
