@@ -426,6 +426,10 @@ p c = array.filter(&odd)
 
 
 
+
+#================================= classes and POO ==============================
+
+
 class SongList
 	def initialize
 			@songs = Array.new
@@ -447,10 +451,6 @@ end
 
 list = SongList.new
 
-
-
-
-
 class Song
 	def initialize(name, artist,duration)
 		@name = name
@@ -462,6 +462,142 @@ end
 aSong = Song.new("Bicylops", "Fleck", 260)
 p aSong.inspect 
 p aSong
+
+
+class Song
+	def to_s
+		"Song: #{@name}, -- #{@artist}, #{@duration}"
+	end
+end
+
+p aSong.to_s
+
+puts "In Ruby, classes are never closed: you can always add methods to an existing class. "
+
+
+class KaraokeSong < Song
+	def initialize(name,artist, duration,lyrics)
+		super(name,artist, duration)
+		@lyrics = lyrics 
+	end
+end
+asong = KaraokeSong.new("my way","sinatra",234, "and now bla bla ")
+p asong.to_s 
+
+
+
+class KaraokeSong < Song
+	def initialize(name,artist, duration,lyrics)
+		super(name,artist, duration)
+		@lyrics = lyrics 
+	end
+
+	def to_s
+		super + " [#{@lyrics}] "
+	end
+end
+asong = KaraokeSong.new("my way","sinatra",234, "and now lyrics of song bla bal bla bla ")
+p asong.to_s 
+
+
+class Song
+	def name 
+		@name
+	end
+	
+	def artist
+		@artist
+	end
+	
+	def duration 
+		@duration
+	end
+	
+end
+
+aSong = Song.new("ella por ella","victor manuel",234)
+p aSong.name 
+p aSong.artist 
+p aSong.duration 
+
+
+
+class Song 
+	attr_accessor :name, :artist, :duration
+end
+
+a = Song.new("vivo por ella","andrea boccelli", 234)
+
+p a.name 
+p a.artist 
+p a.duration 
+
+class Song
+	def duration=(newDuration)
+		@duration = newDuration 
+	end
+end
+
+aa = Song.new("name cancion","andrea boccelli", 234)
+puts 
+puts 
+p aa.duration 
+p aa.duration = 100
+p aa.duration 
+
+class Song 
+	attr_writer :duration
+end
+
+aa = Song.new("name cancion","andrea boccelli", 234)
+p aa.duration = 200 
+p aa.duration 
+
+puts puts 
+class Song 
+	def durationInMinutes
+		@duration/60.0
+	end
+
+	def durationInMinutes=(value)
+		@duration = (value * 60 ).to_i
+	end
+end
+aSong = Song.new("Bicylops", "Fleck", 260)
+p aSong.durationInMinutes 
+p aSong.durationInMinutes = 12 
+p aSong.duration
+
+class Song
+	@@play = 0 
+	def initialize(name, artist, duration)
+		@name = name,
+		@artist = artist
+		@duration = duration 
+		@play = 0
+	end
+	def play
+		@play += 1
+		@@play += 1
+		"This song: #{@play} plays.Canciones totales tocadas: #{@@play} "
+	end
+end 
+s1 = Song.new("Song1", "Artist1", 234)  # test songs..
+s2 = Song.new("Song2", "Artist2", 345)
+p s2.play
+p s2.play
+p s2.play
+p s1.play
+p s2.play
+p s1.play
+p s1.play
+p s1.play
+
+
+
+
+
+
 
 
 
