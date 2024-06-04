@@ -1554,43 +1554,7 @@ six_times { x += 10 }
 puts "value of x after: #{x}"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def my_map 
+	arr = []
+	
+end
