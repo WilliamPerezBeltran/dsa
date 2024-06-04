@@ -568,6 +568,15 @@ p aSong.durationInMinutes
 p aSong.durationInMinutes = 12 
 p aSong.duration
 
+# las variables de clase den ser inicializadas 
+# Unlike global and instance variables, class variables must be initialized 
+# before thely are used. Ogten this initialization is just a simple assignment in the body of the class definition.
+ 
+
+
+# Class variables are private to aclass and its intances. I you
+# want to make them accesssible to the outsde world , wyou will need to write an accessor methid.
+
 class Song
 	@@play = 0 
 	def initialize(name, artist, duration)
@@ -592,6 +601,75 @@ p s2.play
 p s1.play
 p s1.play
 p s1.play
+
+
+
+
+# Class methods are defined by placing the class name and a period in from of the 
+# method name.
+class Example 
+	def Example.classMethod # ===> metodo de clase 
+	end
+
+	def methodo_de_instancia  # ===> metodo de instancia   
+	end
+end
+
+class SongList
+	MaxTime = 5*60  # 5 minutes (300 segundos) 
+
+	def SongList.isTooLong(aSong)
+		return aSong.duration > MaxTime
+	end
+
+	def self.bad(aSong)
+		aSong.name == "myName"
+	end
+end
+
+song1 = Song.new("name","artist",260)
+p SongList.isTooLong(song1) # ==> false
+
+p SongList.bad(song1) # ==> false
+
+song2 = Song.new("The Calling", "Santana", 468)
+SongList.isTooLong(song2)   # ==> true 
+
+class Logger
+  private_class_method :new
+  @@logger = nil
+  def Logger.create
+    @@logger = new unless @@logger
+    @@logger
+  end
+end
+p Logger.create.object_id
+p Logger.create.object_id
+p Logger.create.object_id
+p Logger.create.object_id
+p Logger.create.object_id
+p Logger.create.object_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
