@@ -649,66 +649,153 @@ p Logger.create.object_id
 p Logger.create.object_id
 p Logger.create.object_id
 p Logger.create.object_id
+#                                     OOP
+#
+#
+# Access control
+# Public methods: can be called by abyone -- there is no access control .
+# 		Methdos are public by defautl ( except for initialize, which is always private )
+#
+# Protected methods : can be invoked only by onject of the definning class and its subclases. 
+#			Access is kept whithn the family.
+#
+# Private methods: cannot be called whit an explicit receiver. Beacuse you 
+# 		cannot specify an obnject when using them .
+# 		Private methods ca be called only in the defining class and by 
+# 		direct descendents within that same object .
+#
+#
+#
+# Important:   
+# 		protected ====> it may be called by any instance of the defining class or its subclasses.
+# 		private   ====> It may be called only whithn the context of the called object. 
+ #
+#
+
+# Estos metodos proporciona un nivel intermedio de control de acceso, más restringido que 
+# los metodos publicos pero menos restrictivos que los metodos privados
+#
+#  metodos protegidos:
+#  		Los metodos protegidos son aquellos que pueden ser llamados cuando:
+#  			* pueden ser llamados solo dentro de la misma clase 
+#  			* pueden ser llamados por instancias de la misma clase 
+#  			* pueden ser llamados por sus subclases 
 
 
+#  		Los metodos protegidos pueden llamarlos cuando son:
+#  			* Misma clase 
+#  			* instancias de la misma clase 
+#  			* por sus subclases 
+#
+#  			ejemplo metodos protegidos
+class Persona
+	def initialize(nombre)
+		@nombre = nombre 
+	end
+
+	def mostrar_nombre
+		@nombre
+	end
+	
+	def llamar_metodo_protegido # primera forma llamar al metodo dentro de la misma clase
+ 		nombre_protegido
+	end
+
+	protected
+	def nombre_protegido
+		@nombre
+	end
+end
+
+class Estudiante < Persona
+	def acceder_a_metodo_protegido
+		nombre_protegido
+	end
+	def obtener_nombre_protegido(instancia_classe)
+		instancia_classe.nombre_protegido # segunda forma de llamar metodo protegido. Por medio de la instancia de la clase 
+	end
+end
+
+persona = Persona.new("juan")
+p persona.mostrar_nombre # juan 
+p "ol2"
+p persona.llamar_metodo_protegido
+p "ol2"
+# persona.obtener_nombre_protegido ===> repeat.rb:710:in `<main>': undefined method `obtener_nombre_protegido' for #<Persona:0x0000562d3947aa10 @nombre="juan"> (NoMethodError)
+
+instancia_estudiante = Estudiante.new("roberto")
+p instancia_estudiante.obtener_nombre_protegido(instancia_estudiante)
+p instancia_estudiante.acceder_a_metodo_protegido
 
 
+# ejemplo metodos privados 
+
+class MyClase
+	def initialize(a,b)
+		@a = a
+		@b = b
+ 	end
+	def show_private_methods
+		"#{return_a} #{return_b}"
+	end
+	private 
+	def return_a
+		@a
+	end
+
+	def return_b
+		@b
+	end
+end
+myclase = MyClase.new(1,2)
+p myclase.show_private_methods
+
+class My < MyClase
+end
+my = My.new(2,3)
+my.return_a # repeat.rb:756:in `<main>': private method `return_a' called for #<My:0x000055e1f10157b0 @a=2, @b=3> (NoMethodError)
+
+# two way of definition 
+class MyClasss
+	# by defautl are publid methods if not Specific the type 
+	def method_1
+	end
+	def method_2
+	end
+	protected	
+	def method_3
+	end
+	def method_4
+	end
+	def method_5
+	end
+	private 
+	def method_6
+	end
+	def method_7
+	end
+end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class MyClasss
+	def method_1
+	end
+	def method_2
+	end
+	def method_3
+	end
+	def method_4
+	end
+	def method_5
+	end
+	def method_6
+	end
+	def method_7
+	end
+	public :method_1,:method_2
+	protected:method_3,:method_4,:method_5
+	private:method_6, :method_7
+end
 
 
 
