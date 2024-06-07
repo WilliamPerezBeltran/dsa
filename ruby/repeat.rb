@@ -1,4 +1,5 @@
 #https://ruby-doc.com/docs/ProgrammingRuby/html/tut_classes.html
+# https://github.com/maniramakumar/the-best-ruby-books/blob/master/books/Programming%20Ruby%201.9%20%26%202.0%20-%20The%20Pragmatic%20Programmers'%20Guide%20-%20Fourth%20Edition.pdf
 
 # ================== yield ================== 
 # 1. Método Básico con yield
@@ -55,6 +56,8 @@ def repeat n
 	n.times{ yield }
 end
 repeat(3){|x| puts "heelo"}
+=begin
+=end
 =begin
 
 before we continue a little bit of Bucles en Ruby
@@ -753,7 +756,7 @@ p myclase.show_private_methods
 class My < MyClase
 end
 my = My.new(2,3)
-my.return_a # repeat.rb:756:in `<main>': private method `return_a' called for #<My:0x000055e1f10157b0 @a=2, @b=3> (NoMethodError)
+# my.return_a # repeat.rb:756:in `<main>': private method `return_a' called for #<My:0x000055e1f10157b0 @a=2, @b=3> (NoMethodError)
 
 # two way of definition 
 class MyClasss
@@ -796,6 +799,338 @@ class MyClasss
 	protected:method_3,:method_4,:method_5
 	private:method_6, :method_7
 end
+
+
+
+
+
+# =============================== mirar con detalle =================================
+# =============================== mirar con detalle =================================
+# =============================== mirar con detalle =================================
+#
+# It's time for some examples. Perhaps we're modeling an accounting system where every debit has a corresponding credit. Because we want to ensure that no one can break this rule, we'll make the methods that do the debits and credits private, and we'll define our external interface in terms of transactions.
+class Accounts
+
+  private
+
+    def debit(account, amount)
+      account.balance -= amount
+    end
+    def credit(account, amount)
+      account.balance += amount
+    end
+
+  public
+
+    #...
+    def transferToSavings(amount)
+      debit(@checking, amount)
+      credit(@savings, amount)
+    end
+    #...
+end
+=begin
+En esta parte en la que dice "we'll define our external interface in terms of transactions."
+
+que quiere decir external interface in terms of trasactions
+
+¿como asi, qué es una interfaz ?
+
+En el contexto de la programación orientada a objetos, una "interfaz" se refiere al conjunto de métodos públicos que una clase expone para que otros objetos interactúen con ella. Es la manera en que otras partes del programa pueden usar y manipular las instancias de esa clase sin necesidad de conocer los detalles internos de su implementación.
+
+Cuando el texto dice "we'll define our external interface in terms of transactions," significa que los métodos públicos de la clase Accounts (es decir, su interfaz externa) estarán diseñados para permitir a los usuarios de la clase realizar transacciones. En este caso, las transacciones son operaciones como transferencias de dinero entre cuentas. Los métodos públicos exponen estas operaciones de manera segura y controlada, sin permitir el acceso directo a los métodos internos (debit y credit), que son privados.
+
+Ejemplo Detallado
+Vamos a mejorar el ejemplo que tienes para ilustrar mejor esta idea.
+
+=end
+class Account
+  attr_accessor :balance
+
+  def initialize(balance)
+    @balance = balance
+  end
+end
+
+class Accounts
+  def initialize(checking, savings)
+    @checking = checking
+    @savings = savings
+  end
+
+  # Interfaz externa: métodos públicos
+  public
+
+  def transfer_to_savings(amount)
+    if @checking.balance >= amount
+      debit(@checking, amount)
+      credit(@savings, amount)
+    else
+      puts "Fondos insuficientes en la cuenta corriente."
+    end
+  end
+
+  def transfer_to_checking(amount)
+    if @savings.balance >= amount
+      debit(@savings, amount)
+      credit(@checking, amount)
+    else
+      puts "Fondos insuficientes en la cuenta de ahorros."
+    end
+  end
+
+  # Métodos privados: implementación interna
+  private
+
+  def debit(account, amount)
+    account.balance -= amount
+  end
+
+  def credit(account, amount)
+    account.balance += amount
+  end
+end
+
+# Creación de cuentas
+checking_account = Account.new(1000)
+savings_account = Account.new(500)
+
+# Creación de la instancia de Accounts
+accounts = Accounts.new(checking_account, savings_account)
+
+# Uso de la interfaz externa para realizar transacciones
+accounts.transfer_to_savings(200)  # Transferencia exitosa
+puts checking_account.balance      # 800
+puts savings_account.balance       # 700
+
+accounts.transfer_to_checking(100) # Transferencia exitosa
+puts checking_account.balance      # 900
+puts savings_account.balance       # 600
+
+accounts.transfer_to_savings(1500) # Fondos insuficientes
+=begin
+Explicación
+Clase Account:
+
+Una clase simple para representar una cuenta con un saldo.
+Clase Accounts:
+
+Métodos Públicos (public):
+transfer_to_savings(amount): Transfiere una cantidad de la cuenta corriente a la cuenta de ahorros, verificando primero que haya fondos suficientes.
+transfer_to_checking(amount): Transfiere una cantidad de la cuenta de ahorros a la cuenta corriente, verificando primero que haya fondos suficientes.
+Métodos Privados (private):
+debit(account, amount): Reduce el saldo de la cuenta en la cantidad especificada.
+credit(account, amount): Aumenta el saldo de la cuenta en la cantidad especificada.
+Interfaz Externa
+La interfaz externa de la clase Accounts está definida por los métodos transfer_to_savings y transfer_to_checking. Estos métodos permiten a los usuarios de la clase realizar transferencias entre cuentas sin preocuparse por los detalles internos de cómo se debita o acredita el saldo. Los métodos privados debit y credit encapsulan la lógica interna, asegurando que las transacciones se realicen de manera consistente y segura.
+
+Interfaz Interna
+La interfaz interna está formada por los métodos privados debit y credit. Estos métodos solo pueden ser llamados desde otros métodos dentro de la misma instancia de la clase Accounts, garantizando que las operaciones de débito y crédito no puedan ser manipuladas directamente desde fuera de la clase.
+
+Este enfoque de usar métodos públicos como interfaz externa para realizar operaciones garantiza que la lógica interna de la clase esté protegida y que las transacciones se realicen de manera controlada y segura.
+=end
+
+# =============================== se detiene la expicacion de interfaz =========================
+# =============================== se detiene la expicacion de interfaz =========================
+# =============================== se detiene la expicacion de interfaz =========================
+# =============================== se detiene la expicacion de interfaz =========================
+
+
+
+
+
+
+
+
+
+
+
+
+# ================ Containers, Blocks, and Iterators ================ 
+#Implementing a SongList Container
+
+# append( aSong ) » list
+
+# Append the given song to the list.
+# deleteFirst() » aSong
+
+# Remove the first song from the list, returning that song.
+# deleteLast() » aSong
+
+# Remove the last song from the list, returning that song.
+# [ anIndex } » aSong
+
+# Return the song identified by anIndex, which may be an integer index or a song title.
+
+class SongList
+	def initialize
+		@songs = Array.new
+	end
+	def totalItems 
+		@songs.size 
+	end
+
+
+	def append(aSong) 
+		@songs.push(aSong)
+	end
+
+	def deleteFirst
+		@songs.shift
+	end
+
+	def deleteLast(aSong) 
+		@songs.pop
+	end
+
+	def [](key) 
+		if key.kind_of?(Integer)
+			@songs[key]
+		else
+			# ...	
+		end
+	end
+
+end
+
+list = SongList.new
+list.append(Song.new("title1","artist1",1))
+list.append(Song.new("title2","artist2",2))
+list.append(Song.new("title3","artist3",3))
+list.append(Song.new("title4","artist4",4))
+list.append(Song.new("title5","artist5",5))
+list.append(Song.new("title6","artist6",6))
+list.append(Song.new("title7","artist7",7))
+list.append(Song.new("title8","artist8",8))
+
+p Song.kind_of? Song
+p SongList 
+p SongList.kind_of? SongList
+
+a = 2
+p 2.kind_of? Numeric 
+
+p Song
+
+p list.totalItems
+p list[0]
+p list[2]
+p list[9]
+
+class SongList
+	def [](key)
+		if key.kind_of?(Integer)
+			return  @songs[key]
+		else
+			for i in 0..@songs.length
+				return @songs[i] if key == @songs[i].name 
+			end
+		end
+	end
+end
+
+
+class SongList
+	def [](key)
+		if key.kind_of?(Integer)
+			return @song[key]
+		else
+			for x in (0...@songs.length)
+				return @songs[x] if @songs[x].name === key
+			end
+
+		end
+	end
+end
+
+class SongList
+	def[](key)
+		if key.kink_of?(Integer)
+			result = @songs[key]
+		
+			result = @songs.find{|x| key == @songs[key].name }
+		end
+		result
+	end
+end
+
+class SongList
+	def[](key)
+		return @songs[key]  if key.kink_of?(Integer)
+		return @songs.find{|aSong| key == aSong.name }
+	end
+end
+
+
+
+
+
+
+
+
+module Enumerable 
+      def mash
+        hash = {}
+        each do |item|
+          key, value = yield(item)
+          hash[key] = value
+        end
+        hash
+      end
+end
+
+
+class Array
+  def find
+    for i in 0...size
+      value = self[i]
+      return value if yield(value)
+    end
+    return nil
+  end
+end
+a = [1, 3, 5, 7, 9].find {|v| v*v > 30 }
+puts a 
+
+class Array
+  def find_
+		each do |item|
+      return item if yield(item)
+    end
+    return nil
+  end
+end
+a = [1, 3, 5, 7, 9].find_ {|v| v*v > 30 }
+
+puts a 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
