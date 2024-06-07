@@ -1,0 +1,184 @@
+# https://ruby-doc.org/3.2.2/Enumerable.html#module-Enumerable-label-Other+Methods
+
+=begin
+	any 
+	find 
+	map reduce
+	reject
+	select
+	sort_by
+	group_by
+=end
+
+class AnyUsingEach
+  def test_has_at_least_one_zero
+    #numbers = [2, 0, 9, 3, 0, 1]
+    numbers = [2, 3, 9, 3, 9, 1]
+		pivote = false 
+		numbers.each do |x| 
+			pivote = true if x.zero?
+		end
+		pivote 
+  end
+
+  def test_does_not_have_any_zeros
+    numbers = [3, 1, 3, 2, 4, 9, 8]
+		any_zeros = false
+		numbers.each{|item| any_zeros = true if !item.zero?} 
+		any_zeros
+  end
+
+  def test_has_at_least_one_alice
+    names = ["Bill", "Bob", "Burton", "Alice", "Brandon"]
+		one_alice = false 
+		names.each do |name| 
+			one_alice = true if name == "Alice"
+		end
+	  one_alice	
+  end
+
+   def test_has_a_multi_word_phrase
+    phrases = ["Sure!", "OK.", "I have no idea.", "Really?Whatever."]
+		word_phrase = true 
+		phrases.each do |x| 
+			word_phrase = true if word_phrase.include?(" ")
+   	end
+   end
+end
+
+instance = AnyUsingEach.new
+puts instance.test_has_at_least_one_zero
+puts instance.test_does_not_have_any_zeros
+
+
+class AnyEnumerableMethod
+  def test_has_at_least_one_zero
+    numbers = [2, 0, 9, 3, 0, 1]
+		numbers.any?{|item| item.zero?}
+  end
+
+  def test_does_not_have_any_zeros
+    numbers = [3, 1, 3, 2, 4, 9, 8]
+		numbers.any?{|item| !item.zero?}
+  end
+
+  def test_has_at_least_one_alice
+    names = ["Bill", "Bob", "Burton", "Alice", "Brandon"]
+		names.any?{|name| name == "Alice"}
+  end
+
+   def test_has_a_multi_word_phrase
+    phrases = ["Sure!", "OK.", "I have no idea.", "Really?Whatever."]
+		phrases.any?{|item| item.include?(" ")}
+   end
+end
+
+any = AnyEnumerableMethod.new
+puts any.test_has_at_least_one_zero
+puts any.test_does_not_have_any_zeros
+
+
+
+class CountUsingEach 
+  def test_count_count_words_with_e
+    words = ["thing", "phone", "bark", "belt", "shoe", "bath"]
+		wor = 0
+		words.each do |item|
+			wor += 1 if item.include?("e")
+		end
+		wor
+    # assert_equal 3, tally
+  end
+
+  def test_count_numbers_greater_than_17
+    numbers = [9, 18, 12, 17, 1, 3, 99]
+		wor = 0
+		numbers.each do |item|
+			wor += 1 if item >= 17
+		end
+		wor
+    # assert_equal 2, tally
+  end
+
+  def test_count_words_that_are_uppercase
+    words = ["trousers", "SOCKS", "sweater", "Cap", "SHOE", "TIE"]
+		words.count{|item| item == item.upcase}
+    # assert_equal 3, tally
+  end
+end
+
+
+  def test_group_words_by_length
+    words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
+    lengths = []
+		words.each do |item|
+			lengths<< item.length
+		end
+		lengths.uniq! 
+		
+		items_array = Array.new
+		complete_array= Array.new
+		lengths.each do |length|
+			words.each do |word|
+				if length == 	word.size
+					puts "#{length}: each #{length}:#{word.size} ===> #{word}"
+					items_array << word
+				end
+			end
+			complete_array << [length,items_array]
+			items_array = []
+		end
+		Hash[complete_array]
+
+  end
+
+
+puts "======================="
+puts test_group_words_by_length 
+
+
+def test_group_words_by_length_1
+  words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
+	group = Hash.new{|h,k| h[k]=[]}
+	words.each do |item|
+		group[item.size] << item
+	end
+	group
+	#{3=>["sue", "dog", "cat"], 4=>["adam", "fort", "tops"], 5=>["alice", "steve", "sally"]}
+end
+puts test_group_words_by_length_1
+puts "======================="
+
+
+def test_group_numbers_by_odd_and_even
+    numbers = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+		odd_and_even = Hash.new{|h,k| h[k]=[]}
+		numbers.each do |item|
+			odd_and_even[item%2] << item
+		end
+		odd_and_even 
+
+    # {1=>[1, 1, 3, 5, 13, 21, 55], 0=>[2, 8, 34]}
+  end
+
+  def test_group_words_by_first_letter
+    words = ["ant", "axis", "albatross", "bolt", "badge", "butter", "car", "cdr", "column"]
+    # {"a"=>["ant", "axis", "albatross"], "b"=>["bolt", "badge", "butter"], "c"=>["car", "cdr", "column"]}
+  end
+
+  def test_group_words_by_uniqueness
+    words = ["one", "two", "one", "TWO", "three", "one", "three", "three", "three"]
+    #  {"one"=>["one", "one", "one"], "two"=>["two", "TWO"], "three"=>["three", "three", "three", "three"]}
+  end
+
+  def test_group_by_number_of_zeros
+    numbers = [1, 3, 500, 200, 4000, 3000, 10000, 90, 20, 500000]
+    # {0=>[1, 3], 2=>[500, 200], 3=>[4000, 3000], 4=>[10000], 1=>[90, 20], 5=>[500000]}
+  end
+
+  def test_group_by_order_of_magnitude
+    numbers = [1, 3, 503, 239, 4938, 3932, 19982, 93, 21, 501787]
+    # {1=>[1, 3], 2=>[93, 21], 3=>[503, 239], 4=>[4938, 3932], 5=>[19982], 6=>[501787]}
+  end
+
+p  test_group_numbers_by_odd_and_even
