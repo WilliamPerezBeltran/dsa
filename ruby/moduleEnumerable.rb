@@ -108,6 +108,62 @@ class CountUsingEach
 end
 
 
+  def test_group_words_by_length
+    words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
+    lengths = []
+		words.each do |item|
+			lengths<< item.length
+		end
+		lengths.uniq! 
+		
+		items_array = Array.new
+		complete_array= Array.new
+		lengths.each do |length|
+			words.each do |word|
+				if length == 	word.size
+					puts "#{length}: each #{length}:#{word.size} ===> #{word}"
+					items_array << word
+				end
+			end
+			complete_array << [length,items_array]
+			items_array = []
+		end
+		Hash[complete_array]
+
+  end
+
+
+puts "======================="
+puts test_group_words_by_length 
+
+
+  def test_group_words_by_length_1
+    words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
+    lengths = []
+		words.each do |item|
+			lengths<< item.length
+		end
+		lengths.uniq! 
+		
+		items_array = Array.new
+		complete_array= Array.new
+		lengths.each do |length|
+			words.each do |word|
+				if length == 	word.size
+					puts "#{length}: each #{length}:#{word.size} ===> #{word}"
+					items_array << word
+				end
+			end
+			complete_array << [length,items_array]
+			items_array = []
+		end
+		Hash[complete_array]
+
+  end
+
+
+puts "======================="
+puts test_group_words_by_length_1
 
 
 
@@ -117,12 +173,57 @@ end
 
 
 
+  def test_group_words_by_length_1
+    words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
+		a = Hash.new{|h,k| h[k]=[]}
+		words.each do |item|
+			a[item.size] << item
+		end
+
+		a
+
+
+
+		
+		#{3=>["sue", "dog", "cat"], 4=>["adam", "fort", "tops"], 5=>["alice", "steve", "sally"]}
+
+  end
+
+
+puts "======================="
+puts test_group_words_by_length_1
 
 
 
 
+en la documentacion de ruby doc de los hash esta esto 
 
+default_proc → anObjectclick to toggle source
+If Hash::new was invoked with a block, return that block, otherwise return nil.
 
+1. ¿ que quiere decir → en este contexto ?
+2. ¿ que quiere decir :: en este contexto ?
+3. ¿ la fuente es esta es ese codigo C  ?
+
+               static VALUE
+rb_hash_default_proc(hash)
+    VALUE hash;
+{
+    if (FL_TEST(hash, HASH_PROC_DEFAULT)) {
+        return RHASH(hash)->ifnone;
+    }
+    return Qnil;
+}
+            
+Dan este ejemplo 
+h = Hash.new {|h,k| h[k] = k*k }   #=> {}
+p = h.default_proc                 #=> #<Proc:0x401b3d08@-:1>
+a = []                             #=> []
+p.call(a, 2)
+a                                  #=> [nil, nil, 4]
+
+4. ¿ en este acaso h se refiera a hash y k se refiere a key ?
+5. ¿ Explicame bien este concept de Hash y block al mismo ?
 
 
 
