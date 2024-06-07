@@ -50,7 +50,6 @@ instance = AnyUsingEach.new
 puts instance.test_has_at_least_one_zero
 puts instance.test_does_not_have_any_zeros
 
-
 class AnyEnumerableMethod
   def test_has_at_least_one_zero
     numbers = [2, 0, 9, 3, 0, 1]
@@ -76,8 +75,6 @@ end
 any = AnyEnumerableMethod.new
 puts any.test_has_at_least_one_zero
 puts any.test_does_not_have_any_zeros
-
-
 
 class CountUsingEach 
   def test_count_count_words_with_e
@@ -107,35 +104,32 @@ class CountUsingEach
   end
 end
 
-
-  def test_group_words_by_length
-    words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
-    lengths = []
-		words.each do |item|
-			lengths<< item.length
-		end
-		lengths.uniq! 
-		
-		items_array = Array.new
-		complete_array= Array.new
-		lengths.each do |length|
-			words.each do |word|
-				if length == 	word.size
-					puts "#{length}: each #{length}:#{word.size} ===> #{word}"
-					items_array << word
-				end
+def test_group_words_by_length
+words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
+lengths = []
+	words.each do |item|
+		lengths<< item.length
+	end
+	lengths.uniq! 
+	
+	items_array = Array.new
+	complete_array= Array.new
+	lengths.each do |length|
+		words.each do |word|
+			if length == 	word.size
+				puts "#{length}: each #{length}:#{word.size} ===> #{word}"
+				items_array << word
 			end
-			complete_array << [length,items_array]
-			items_array = []
 		end
-		Hash[complete_array]
+		complete_array << [length,items_array]
+		items_array = []
+	end
+	Hash[complete_array]
 
-  end
-
+end
 
 puts "======================="
 puts test_group_words_by_length 
-
 
 def test_group_words_by_length_1
   words = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
@@ -148,7 +142,6 @@ def test_group_words_by_length_1
 end
 puts test_group_words_by_length_1
 puts "======================="
-
 
 def test_group_numbers_by_odd_and_even
 	numbers = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
@@ -206,18 +199,6 @@ p test_group_words_by_uniqueness
 p test_group_by_number_of_zeros
 p test_group_by_order_of_magnitude
 
-
-
-
-
-
-
-
-
-
-
-
-
 def test_group_words_by_length_1
   array = ["sue", "alice", "steve", "sally", "adam", "fort", "tops", "dog", "cat"]
 	array.group_by{|item| item.length} 
@@ -254,11 +235,7 @@ p test_group_words_by_uniqueness
 p test_group_by_number_of_zeros
 p test_group_by_order_of_magnitude
 
-
-
-
 class ReduceUsingEach 
-  
  def test_sum_a_list_of_numbers
     numbers = [32, 1, 21, 5, 81, 333]
 		acco = 0 
@@ -330,7 +307,6 @@ class ReduceUsingEach
 
     # rta 31
   end
-
 end
 
 a = ReduceUsingEach.new
@@ -342,10 +318,7 @@ p a.test_divide_560_by_a_bunch_of_numbers
 p a.test_subtract_smallest_values_from_100
 p a.test_add_all_the_second_values_together
 
-
-
 class ReduceUsingEach 
-  
  def test_sum_a_list_of_numbers
     array = [32, 1, 21, 5, 81, 333]
 		array.reduce(0){|acco,n|acco+n}
@@ -388,10 +361,8 @@ class ReduceUsingEach
   def test_add_all_the_second_values_together
     array  = [["a", 1], ["b", 9], ["c", 21]]
 		array.reduce(0){|sum,n|sum+n[1]}
-
     # rta 31
   end
-
 end
 
 a = ReduceUsingEach.new
@@ -402,3 +373,12 @@ p a.test_capitalize_keywords_in_phrase_one_fish_two_fish_red_fish_blue_fish
 p a.test_divide_560_by_a_bunch_of_numbers
 p a.test_subtract_smallest_values_from_100
 p a.test_add_all_the_second_values_together
+
+def array_to_hash
+	["Kansas","Nebraska", "North Dakota", "South Dakota"].reduce({}) do |acco,item|
+		acco[item] = item.size 
+		acco
+	end
+	#answer : {"Kansas"=>6, "Nebraska"=>8, "North Dakota"=>12, "South Dakota"=>12}
+end
+puts array_to_hash
