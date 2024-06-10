@@ -1121,29 +1121,130 @@ p [1,2,3,4,5].product
 
 
 
+class GoodDog
+end
+
+module Speak
+	def speak(sound)
+		puts sound
+	end
+end
+
+class GoodDog
+	include Speak
+end
+
+class Human 
+	include Speak
+end
+
+g = GoodDog.new 
+g.speak("ole") 
+# ancestors 
+
+p GoodDog.ancestors #[GoodDog, Speak, Object, Kernel, BasicObject]
+
+p Human.ancestors #[Human, Speak, Object, Kernel, BasicObject]
+
+
+class GoodDog
+	def initialize
+		puts "This object was initialized!"
+	end
+end
+
+a = GoodDog.new # "This object was initialized!" 
+
+
+class GoodDog
+	def initialize(name)
+		@name = name 
+	end
+end
+
+b = GoodDog.new("will") # "This object was initialized!" 
+
+# composition 
+class Engine 
+	def start 
+		puts "engine starting..."
+	end
+end
+
+class Car 
+	def initialize
+		@engine = Engine.new
+		puts "instancia de Engine is created"
+	end
+
+	def start
+		@engine.start
+	end
+end
+my_car = Car.new
+my_car.start 
+
+class GoodDog
+	def initialize(name)
+		@name = name 
+	end
+
+	def get_name 
+		@name
+	end
+
+	def set_name=(name)
+		@name = name
+	end
+
+	def speak
+		"#{@name} says arf!"
+	end
+end
+
+asdf = GoodDog.new("will")
+p asdf.get_name 
+p asdf.speak 
+p asdf.set_name = "Spartacus"
+p asdf.get_name 
+p asdf.get_name 
+
+puts "============="
+puts "============="
+puts "============="
+class GoodDog
+	attr_accessor :name
+	def initialize(name)
+		@name = name 
+	end
+
+	def speak
+		"#{@name} says arf!"
+	end
+end
+
+asdf = GoodDog.new("will")
+p asdf.get_name 
+p asdf.speak 
+p asdf.set_name = "Spartacus"
+p asdf.get_name 
+p asdf.get_name 
+
+# attr_accessor ===>  getter and setter 
+# but what if we only want the getter methods without the setter method
+# attr_reader ===> getter 
+# and if you only want the setter method, you can use the attr_writer
+# attr_writer ===> setter 
+# All of the attr_* methdos take Symbol objects as arguments; if there are more states you are tracking , you can use thes syntac 
+#
+# attr_accessor :name, :last_name, :other
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# attr_accessor     ===> getter and setter 
+# attr_reader       ===> getter 
+# attr_writer       ===> setter 
+# All of the attr_* ===> Symbol 
 
