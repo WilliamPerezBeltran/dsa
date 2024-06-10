@@ -1,6 +1,8 @@
 #https://ruby-doc.com/docs/ProgrammingRuby/html/tut_classes.html
 # https://github.com/maniramakumar/the-best-ruby-books/blob/master/books/Programming%20Ruby%201.9%20%26%202.0%20-%20The%20Pragmatic%20Programmers'%20Guide%20-%20Fourth%20Edition.pdf
 
+
+# https://launchschool.com/books/oo_ruby/read/inheritance
 # ================== yield ================== 
 # 1. Método Básico con yield
 # 2. yield con Argumentos
@@ -1492,6 +1494,89 @@ p asd_2.info
 p asd_2.what_it_is_self
 
 
+#################################################
+class Animal 
+	def speak
+		"hey"
+	end
+end
+ a = Animal.new
+ a.speak
+
+class Perro < Animal
+end
+ b = Perro.new
+p b.speak
+
+
+
+
+
+
+class Animal 
+	attr_accessor :name
+	def initialize(name)
+		self.name = name 
+	end
+
+	def speak
+		"#{self.name} metodo speak superclass"
+	end
+end
+
+class Cat < Animal 
+end
+
+class Burro < Animal 
+	def speak
+		super + " - " + " metodo speak hija "
+	end
+end
+
+a = Cat.new("sammy")
+b = Burro.new("burro")
+p a.speak
+p b.speak
+
+
+
+
+class Animal 
+	attr_accessor :name
+	def initialize(name)
+		 @name = name
+	end
+end
+
+class Ganzo < Animal
+	def initialize(color)
+		super
+		@color = color 
+	end
+end
+
+ganzo = Ganzo.new("gansito")
+p ganzo.inspect
+
+class BagDog < Animal
+	def initialize(age, name)
+		super(name)
+		@age = age 
+	end
+end
+
+af =  BagDog.new(23,"will2") 
+p af.inspect
+
+
+class BagDog < Animal
+	def initialize(age, name)
+		@age = age 
+	end
+end
+
+af =  BagDog.new(23,"will2") 
+p af.inspect
 
 
 
@@ -1499,17 +1584,88 @@ p asd_2.what_it_is_self
 
 
 
+module Swimmable
+	def swim
+		"I'm swimming"
+	end
+end
+
+class Animal1; end
+
+class Fish 
+end
+
+class Mammal < Animal
+end
+
+class Dog < Animal1
+	include Swimmable
+end
+
+dog = Dog.new
+p dog.swim 
 
 
+module Walkable 
+	def walk
+		" estoy caminando "
+	end
+end
 
 
+module Swimmable 
+	def swim 
+		" estoy nadando  "
+	end
+end
 
 
+module Climbable 
+	def climb 
+		" climb "
+	end
+end
+
+module ZZimbable 
+	def  zz 
+		"zz "
+	end
+end
+
+module  AAA
+	def  zz 
+		"zz "
+	end
+end
+class Ani 
+	include  AAA
+	include ZZimbable 
+	include Walkable
+	include Climbable 
+	def speak 
+		"soy animal y hablo"
+	end
+end
+puts "---Animal method lookup---"
+puts Ani.ancestors
+
+module OO 
+	class Dog
+		def speak
+			"habla perro "
+		end
+	end
+
+	class Cat 
+		def speak
+			"habla cat "
+		end
+	end
+end
 
 
-
-
-
+gato = OO::Dog.new
+p gato.speak
 
 
 
