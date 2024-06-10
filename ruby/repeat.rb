@@ -1248,3 +1248,278 @@ p asdf.get_name
 # attr_writer       ===> setter 
 # All of the attr_* ===> Symbol 
 
+class AnotherClass
+	attr_accessor :name, :height, :weight
+	def initialize(n,h,w)
+		@name = n 
+		@height = h 
+		@weight =  w
+	end
+
+	def speak
+		" oele spek #{@name}"
+	end
+
+	def ole
+		"#{name}_"
+	end
+
+	def ole_
+		"#{@name}_"
+	end
+
+	def mi_method1
+		"metodo 1"
+	end
+
+	def mi_method2
+		"metodo 2"
+	end
+
+	def mi_method3
+		p "llamo al metodo3"
+		p "#{self.mi_method1} #{self.mi_method2} "
+	end
+
+end
+as =  AnotherClass.new("spartacus","23 cm","45k")
+p as.speak 
+p as.ole 
+p as.ole_
+p as.mi_method1
+p as.mi_method2
+ as.mi_method3
+
+
+
+class AnotherClass
+
+	def mi_method1
+		"metodo 1"
+	end
+
+	def mi_method2
+		"metodo 2"
+	end
+
+	def mi_method3
+		p "llamo al metodo3"
+		p "#{self.mi_method1} #{self.mi_method2} "
+	end
+
+end
+
+
+class AnotherClass
+
+	def mi_method1
+		"metodo 1"
+	end
+
+	def mi_method2
+		"metodo 2"
+	end
+
+	def mi_method3
+		p "llamo al metodo3"
+		p "#{mi_method1} #{mi_method2} "
+	end
+
+end
+
+
+class GoodDog
+  attr_accessor :name, :height, :weight
+
+  def initialize(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
+  end
+
+  def speak
+    "#{name} says arf!"
+  end
+
+  def change_info(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
+  end
+
+  def info
+		"#{name} weighs #{weight} and is #{height} tall." # ===> aqui lo que se esta llamando es al getter de la variable name. ojo no se esta llamando a la variable name, porque no existe una variable name lo que existe es la variable de instancia @name que es llamada con el getter de name que es:
+#		def get_name 
+#			@name 
+#		end
+  end
+end
+
+class GoodDog
+  attr_accessor :name, :height, :weight
+
+  def initialize(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
+  end
+
+  def speak
+    "#{name} says arf!"
+  end
+
+  def change_info(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
+  end
+
+  def info
+    "#{name} weighs #{weight} and is #{height} tall."
+  end
+end
+
+as =  GoodDog.new("william","23cm", "34kilo")
+p as.speak 
+p as.info
+p as.change_info("oscar","3d","3k")
+p as.info
+p as.speak 
+p as.info
+
+
+class Xer 
+	attr_accessor :color
+	attr_reader :year
+	def initialize(year, color, model)
+		@year = year
+		@color = color 
+		@model = model 
+		@current_speed = 0 
+	end
+	
+	def	speed_up(number)
+		@current_speed += number		
+	end
+
+	def brake(number)
+		@current_speeds -= number		
+	end
+	def shut_it_off 
+		@current_speed = 0 
+	end
+
+	def current_speed 
+		@current_speed
+		"the current_speed: #{@current_speed}"
+	end
+	def	spray_paint(color)
+		self.color = color
+		p "puts the new color es #{color}"
+	end
+end
+
+class GoodDog
+	@@number_of_dogs = 0
+  def initialize()
+  	@@number_of_dogs += 1 
+  end
+
+	def self.total_numbers_of_dogs
+  	@@number_of_dogs 
+  end
+end
+dog1 = GoodDog.new
+dog2 = GoodDog.new
+dog3 = GoodDog.new
+dog4 = GoodDog.new
+dog5 = GoodDog.new
+dog6 = GoodDog.new
+
+puts GoodDog.total_numbers_of_dogs   # => 2
+
+class GoodDog
+	DOG_YEARS = 7
+
+	attr_accessor :name, :age
+
+	def initialize(n, a)
+		 @name = n
+		 @age = a * DOG_YEARS
+	end
+end
+
+a =  GoodDog.new("nico",3)
+p  a.name
+p a.age 
+p a.age 
+p a
+p a.inspect
+
+class GoodDog
+	attr_accessor :name, :weight, :height
+	def initialize(n, w, h)
+		self.name = n
+		self.weight = w
+		self.height = h
+	end
+
+	def change_info(n, w, h)
+		self.name = n
+		self.weight = w
+		self.height = h
+	end
+
+	def info
+		"#{self.name} #{self.weight} #{self.height}" 
+	end
+
+	def what_it_is_self
+		self
+	end
+end
+
+asd = GoodDog.new("will",23,23)
+p asd.info
+p asd.what_it_is_self
+
+asd_1 = GoodDog.new("oscar",00,11)
+p asd_1.info 
+p asd_1.what_it_is_self
+
+asd_2 = GoodDog.new("sandri",22,99)
+p asd_2.info 
+p asd_2.what_it_is_self
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
