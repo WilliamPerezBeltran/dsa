@@ -1,0 +1,15 @@
+============= GEMS =============
+
+Instead of doing by your self, just you can search ruby gem repository:
+https://rubygems.org/
+
+them 
+	- gem server 
+	Server started at http://0.0.0.0:8808
+
+
+them 
+	- gem server 
+	Server started at http://0.0.0.0:8808
+
+	look for hash_compare
