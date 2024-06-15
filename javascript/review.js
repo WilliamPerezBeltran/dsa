@@ -101,23 +101,57 @@ Las funciones en javascript tienen algunas propiedades y metodos utilicomo como:
 
 
 
+======================== declaracion de variables  ========================
 
 
+primero que todo vamos a definir un tema importante en este conexto, la definicion de 
+hoisting 
 
+¿ qué es hoisting ?
+	Hoisting es un termino para describir que las declaracions de variables y funciones
+  son de desplazadas a la parte superior del scope mas cercano, scope global o de funcion.
+	Esto sucede asolamente con las declaraciones y no con las asignaciones. 
+	El código permanece igual. 
+	Solo es una interpretación del motor de javascript
 
-Hoisting es un término para describir que las declaraciones de variables y funciones son desplazadas a la parte superior del scope más cercano, scope global o de función. Esto sucede solamente con las declaraciones y no con las asignaciones. El código permanece igual, solo es una interpretación del motor de JavaScript.
+tipos de variables en javascript 
+* var 
+* let 
+* const 
 
+1. "var"
+	* tiene alcance de funcion o global, dependiendo de donde se declare.
+	* Puede ser redeclarada y reasignada.
+	* Soporta "hoisting", lo que significa que puede ser utilizada antes de su declaración.
+	
+	var x = 10
+ 	if(true){
+		var x = 20  //misma variable	
+	}
+	console.log(x) // x => 20
 
+2. "let"
+	* Tiene alcance de bloque, es decir solo es accesible dentro del bloque donde se declara
+	* Puede ser reasignada pero no redeclarada en el mismo ámbito 
+	* No soporto hoisting de la misma manera que var
+	let xx = 10
+	if(true){
+		let xx = 20 //variable diferente	
+		console.log(xx) // xx => 20
+	}
+	console.log(xx) // xx =>10
+	
 
-
-
-
-
-
-
-
-
-
+1. "const"
+	* Tiene alcance de bloque, es decir solo es accesible dentro del bloque donde se declara 
+	* Debe ser inicializada al momento de su declaración y no puede ser reasingnada.
+	* Las propiedades de objetos y elementos de arrays declaradso con "const" pueden ser 
+		modificadso, pero la referencia no puede cambiar.
+	const z = 10
+	// z = 20 Error: assignment to consta variable.
+	const obj = {a:1}
+	obj.a = 2 //valido
+	console.log(obj.a) // 2 
 
 
 
