@@ -4,5 +4,8 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "xhr2": "^0.2.1"
   }
 }

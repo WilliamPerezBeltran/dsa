@@ -368,19 +368,52 @@ Object.prototype.toString.call(data)
 */
 
 
+console.log("======================== handle HTTP request   ========================")
+
+//		https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/
+
+// npm install xhr2
+
+//		1. usen XMLHttpRequest()
+// npm install xhr2
+var XMLHttpRequest = require('xhr2');
+const Http = new XMLHttpRequest()
+const url = "https://jsonplaceholder.typicode.com/posts"
+Http.open("GET",url)
+Http.send()
+Http.onreadystatechange = ()=>{
+	console.log("using: new XMLHttpRequest()")
+	console.log(Http.responseText)
+}
+
+
 console.log("======================== callback  ========================")
 
+console.log("************")
+console.log("************")
+console.log("************")
+console.log("************")
+console.log("************")
+
+function getData(callback){
+const Http = new XMLHttpRequest()
+const url = "https://jsonplaceholder.typicode.com/posts"
+Http.open("GET",url)
+Http.send()
+Http.onreadystatechange = ()=>{
+ 	callback(Http.responseText)	
+}
+}
+
+let callback = (datos) =>{
+	for(item in  datos){
+		console.log(item.id)
+	}
+
+}
 
 
-
-
-
-
-
-
-
-
-
+getData(callback)
 
 
 
