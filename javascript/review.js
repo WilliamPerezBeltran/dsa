@@ -1,4 +1,5 @@
 //		https://es.javascript.info/async
+//		https://github.com/NWCalvank/fw-asyncjs
 console.log("again")
 
 console.log("======================== datos primitivos  ========================")
@@ -383,7 +384,7 @@ Http.open("GET",url)
 Http.send()
 Http.onreadystatechange = ()=>{
 	console.log("using: new XMLHttpRequest()")
-	console.log(Http.responseText)
+	//console.log(Http.responseText)
 }
 
 
@@ -406,10 +407,9 @@ Http.onreadystatechange = ()=>{
 }
 
 let callback = (datos) =>{
-	for(item in  datos){
-		console.log(item.id)
-	}
-
+	console.log("datosssss:")
+	console.log(typeof dato)
+	console.log(typeof JSON.stringify(dato))
 }
 
 
