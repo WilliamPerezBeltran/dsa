@@ -152,29 +152,6 @@ primeraOperacion_("",()=>{
 
 
 
-console.log("====================== promesas  ======================")  
-
-const miPromesa = new Promise((resolve,reject)=>{
-	//hacer algo asincrono 
-	let exito = true
-	if(exito){
-		resolve("la operacion fue exitosa")
-	}else{
-		reject("la operacion fue un fracaso")
-	}
-})
-
-
- miPromesa
-.then((resultado)=>{
-	console.log(resultado)  // la operacion fue exitosa
-})
-.catch((error)=>{
-	console.log()  // Hubo un error en la operacion 
-})
-
-
-
 
 
 
