@@ -1,5 +1,5 @@
-//https://www.javascripttutorial.net/es6/javascript-promises
-
+// https://www.javascripttutorial.net/es6/javascript-promises
+// https://github.com/atapas/promise-interview-ready?tab=readme-ov-file
 
 /*
 
@@ -144,7 +144,7 @@ promise.then((data)=>{
 //promesas total templte 
 function getUsersTotal(){
 	return new Promise((resolve,reject)=>{
-		if(false){
+		if(true){
 	    resolve([
  		     { username: 'john', email: 'john@test.com' },
  		     { username: 'jane', email: 'jane@test.com' },
@@ -163,8 +163,11 @@ newPromise
 	}) 
 	.catch((error)=>{
 		console.log(`error: ${error} `)
+		throw new Error("Whoops!");
 	}) 
-
+	.finally(()=>{
+		console.log(`Experiment completed `)
+	}) 
 
 
 
