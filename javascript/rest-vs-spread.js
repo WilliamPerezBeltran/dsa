@@ -1,4 +1,6 @@
 console.log("====================== rest syntax ======================");
+
+
 //  1. receiving data: rest syntax
 
 function myFunc(first, ...remaining) {
@@ -25,3 +27,16 @@ const { ...rema } = {
   ge_: 23,
 };
 console.log(rema); // "a"
+
+
+
+//  2. Sending data: spreading 
+
+function returnArgArray(...args){
+	return args
+}
+
+console.log( returnArgArray(1,2,3,4,5,6) )
+console.log( returnArgArray([...["a","b"],"c"]) )
+console.log( returnArgArray({...{a:1, b:2}, c:3}) )
+console.log( returnArgArray([["a","b"],"c"]) )
