@@ -1,4 +1,8 @@
 
+// https://www.digitalocean.com/community/tutorials/understanding-generators-in-javascript-es
+
+
+// https://stackoverflow.com/questions/265392/why-is-lazy-evaluation-useful
 // https://juanmirod.github.io/2017/09/11/Generadores-JavaScript.html
 /*
 una funcion generadora (constructor GeneratorFunction) es un tipo 

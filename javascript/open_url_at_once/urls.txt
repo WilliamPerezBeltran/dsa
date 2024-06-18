@@ -1,0 +1,9 @@
+https://es.javascript.info/async
+https://github.com/NWCalvank/fw-asyncjs
+https://github.com/atapas/promise-interview-ready?tab=readme-ov-file
+https://jsonplaceholder.typicode.com/posts"
+https://juanmirod.github.io/2017/09/11/Generadores-JavaScript.html
+https://stackoverflow.com/questions/265392/why-is-lazy-evaluation-useful
+https://www.digitalocean.com/community/tutorials/understanding-generators-in-javascript-es
+https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/
+https://www.javascripttutorial.net/es6/javascript-promises
