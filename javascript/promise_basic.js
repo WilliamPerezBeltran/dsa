@@ -19,8 +19,8 @@ be able to make progress while it is waiting for a network request.
 
 */
 
-console.log("====================== promise  ======================")  
-console.log("==== important template about promise ====")  
+console.log("====================== promise  ======================");
+console.log("==== important template about promise ====");
 /*
 
 const promise = new Promise((resolve,reject)=>{
@@ -39,42 +39,39 @@ promise
 
 */
 
-const miPromesa = new Promise((resolve,reject)=>{
-  //hacer algo asincrono 
-  let exito = true 
-  if(exito){
-    resolve("la operacion fue exitosa")
-  }else{
-    reject("la operacion fue un fracaso")
+const miPromesa = new Promise((resolve, reject) => {
+  //hacer algo asincrono
+  let exito = true;
+  if (exito) {
+    resolve("la operacion fue exitosa");
+  } else {
+    reject("la operacion fue un fracaso");
   }
-})
+});
 
 miPromesa
-.then((resultado)=>{
-  console.log(resultado)  // la operacion fue exitosa
-})
-.catch((error)=>{
-  console.log(error)  // Hubo un error en la operacion 
-})
-
+  .then((resultado) => {
+    console.log(resultado); // la operacion fue exitosa
+  })
+  .catch((error) => {
+    console.log(error); // Hubo un error en la operacion
+  });
 
 function getUsers() {
   return [
-    { username: 'john', email: 'john@test.com' },
-    { username: 'jane', email: 'jane@test.com' },
+    { username: "john", email: "john@test.com" },
+    { username: "jane", email: "jane@test.com" },
   ];
 }
 
 function findUser(username) {
-  const users = getUsers()
+  const users = getUsers();
   //const user =  users.find((user)=>{return user.username === username})
-  const user =  users.find((user)=> user.username === username )
-  return user
+  const user = users.find((user) => user.username === username);
+  return user;
 }
 
-
-console.log(findUser("john"))
-
+console.log(findUser("john"));
 
 //To simulate the delay, you can use the setTimeout() function. For example:
 
@@ -82,109 +79,87 @@ function getUsers_() {
   let users = [];
   setTimeout(() => {
     users = [
-      { username: 'john', email: 'john@test.com' },
-      { username: 'jane', email: 'jane@test.com' },
+      { username: "john", email: "john@test.com" },
+      { username: "jane", email: "jane@test.com" },
     ];
   }, 1000);
   return users;
 }
 
 function findUser_(username) {
-  const users = getUsers_()
+  const users = getUsers_();
   //const user =  users.find((user)=>{return user.username === username})
-  const user =  users.find((user)=> user.username === username )
-  return user
+  const user = users.find((user) => user.username === username);
+  return user;
 }
 
-
-console.log(findUser_("john")) //undefined
+console.log(findUser_("john")); //undefined
 
 //Using callbacks to deal with an asynchronous operation
 
-console.log("executed operation")
+console.log("executed operation");
 
 function getUsers__(callback) {
   setTimeout(() => {
     callback([
-      { username: 'john', email: 'john@test.com' },
-      { username: 'jane', email: 'jane@test.com' },
+      { username: "john", email: "john@test.com" },
+      { username: "jane", email: "jane@test.com" },
     ]);
   }, 1000);
 }
 
 function findUser__(username, callback) {
-   getUsers__((users) => {
+  getUsers__((users) => {
     const user = users.find((user) => user.username === username);
     callback(user);
   });
 }
 
-findUser__('john', console.log);
+findUser__("john", console.log);
 
+// with promise
 
-// with promise 
-
-function getUsersWithPromise(){
-	return	new Promise((resolve,reject)=>{
-		setTimeout(()=>{
-	    resolve([
- 		     { username: 'john', email: 'john@test.com' },
- 		     { username: 'jane', email: 'jane@test.com' },
- 		   ]);
-		},2000)
-	})
+function getUsersWithPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([
+        { username: "john", email: "john@test.com" },
+        { username: "jane", email: "jane@test.com" },
+      ]);
+    }, 2000);
+  });
 }
 
-const promise = getUsersWithPromise()
-promise.then((data)=>{
-	console.log("getUsersWithPromise")
-	console.log(data)
-})
+const promise = getUsersWithPromise();
+promise.then((data) => {
+  console.log("getUsersWithPromise");
+  console.log(data);
+});
 
-//promesas total templte 
-function getUsersTotal(){
-	return new Promise((resolve,reject)=>{
-		if(true){
-	    resolve([
- 		     { username: 'john', email: 'john@test.com' },
- 		     { username: 'jane', email: 'jane@test.com' },
- 		   ]);
-		}else{
-			reject("algo salio mal")
-		}
-	},3000)
+//promesas total templte
+function getUsersTotal() {
+  return new Promise((resolve, reject) => {
+    if (true) {
+      resolve([
+        { username: "john", email: "john@test.com" },
+        { username: "jane", email: "jane@test.com" },
+      ]);
+    } else {
+      reject("algo salio mal");
+    }
+  }, 3000);
 }
 
-const newPromise = getUsersTotal()
+const newPromise = getUsersTotal();
 
 newPromise
-	.then((data)=>{
-		console.log(`ole: ${data} `)
-	}) 
-	.catch((error)=>{
-		console.log(`error: ${error} `)
-		throw new Error("Whoops!");
-	}) 
-	.finally(()=>{
-		console.log(`Experiment completed `)
-	}) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .then((data) => {
+    console.log(`ole: ${data} `);
+  })
+  .catch((error) => {
+    console.log(`error: ${error} `);
+    throw new Error("Whoops!");
+  })
+  .finally(() => {
+    console.log(`Experiment completed `);
+  });

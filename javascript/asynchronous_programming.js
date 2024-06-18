@@ -16,7 +16,7 @@ be able to make progress while it is waiting for a network request.
 
 */
 
-console.log("====================== callbacks ======================")  
+console.log("====================== callbacks ======================");
 
 /*
 Callbacks
@@ -25,10 +25,9 @@ a slow action take an extra argument, a callback function. The action is started
 and when it finishes, the callback function is called with the result.
 */
 
-
-setTimeout(()=>{
-	console.log("waiting 500 miliseconds")
-},500)
+setTimeout(() => {
+  console.log("waiting 500 miliseconds");
+}, 500);
 
 /*
 
@@ -43,154 +42,124 @@ bigOak.readStorage("food caches", caches => {
 */
 
 //basic definition of callback
-function doSomething1(parameter,callback){
-	console.log("entro a do somehint 111")
-	callback(parameter)
+function doSomething1(parameter, callback) {
+  console.log("entro a do somehint 111");
+  callback(parameter);
 }
 
-function callback(n){
-	console.log(n)
+function callback(n) {
+  console.log(n);
 }
 
-doSomething1("hola parametro",callback)
+doSomething1("hola parametro", callback);
 
-//callback anonimo 
-let anonimous = function(){
-	console.log("callback anonimo")
-}
-anonimous()
+//callback anonimo
+let anonimous = function () {
+  console.log("callback anonimo");
+};
+anonimous();
 
-
-//practical example 
-function getData(callback){
-	console.log(`entro a getData`)
-	setTimeout(()=>{
-		console.log(`getData Executed `)
-		const data = {name:"paul graham",age:23}	
-		callback(data)
-	},500)
-}
-
-
-function procesarDar(data){
-	console.log(`datos recibidos: ${data}`)
+//practical example
+function getData(callback) {
+  console.log(`entro a getData`);
+  setTimeout(() => {
+    console.log(`getData Executed `);
+    const data = { name: "paul graham", age: 23 };
+    callback(data);
+  }, 500);
 }
 
-getData(procesarDar)
+function procesarDar(data) {
+  console.log(`datos recibidos: ${data}`);
+}
 
-console.log()
-console.log()
-console.log()
+getData(procesarDar);
+
+console.log();
+console.log();
+console.log();
 
 //callbacks anidados
 
-function primeraOperacion(callback){
-	setTimeout(()=>{
-		console.log("11111 operation")
-		callback()
-	},1000)
+function primeraOperacion(callback) {
+  setTimeout(() => {
+    console.log("11111 operation");
+    callback();
+  }, 1000);
 }
 
-function segundaOperacion(callback){
-	setTimeout(()=>{
-		console.log("22222 operation")
-		callback()
-	},1000)
+function segundaOperacion(callback) {
+  setTimeout(() => {
+    console.log("22222 operation");
+    callback();
+  }, 1000);
 }
 
-function terceraOperacion(callback){
-	setTimeout(()=>{
-		console.log("33333 operation")
-		callback()
-	},1000)
+function terceraOperacion(callback) {
+  setTimeout(() => {
+    console.log("33333 operation");
+    callback();
+  }, 1000);
 }
 
-primeraOperacion(()=>{
-	segundaOperacion(()=>{
-		terceraOperacion(()=>{
-			console.log("todas las operaciones completas executadas")
-		})
-	})
-})
+primeraOperacion(() => {
+  segundaOperacion(() => {
+    terceraOperacion(() => {
+      console.log("todas las operaciones completas executadas");
+    });
+  });
+});
 
+//callbacks anidados con parametros
 
-
-//callbacks anidados con parametros 
-
-function primeraOperacion_(a = "primera operacion",callback){
-	console.log("primera operacion")
-	setTimeout(()=>{
-		console.log("11111 operation")
-		callback()
-	},1000)
+function primeraOperacion_(a = "primera operacion", callback) {
+  console.log("primera operacion");
+  setTimeout(() => {
+    console.log("11111 operation");
+    callback();
+  }, 1000);
 }
 
-function segundaOperacion_(a = "segunda operacion",callback){
-	console.log("segunda operacion")
-	setTimeout(()=>{
-		console.log("22222 operation")
-		callback()
-	},1000)
+function segundaOperacion_(a = "segunda operacion", callback) {
+  console.log("segunda operacion");
+  setTimeout(() => {
+    console.log("22222 operation");
+    callback();
+  }, 1000);
 }
 
-function terceraOperacion_(a = "tercera operacion",callback){
-	console.log("tercera operacion")
-	setTimeout(()=>{
-		console.log("33333 operation")
-		callback()
-	},1000)
+function terceraOperacion_(a = "tercera operacion", callback) {
+  console.log("tercera operacion");
+  setTimeout(() => {
+    console.log("33333 operation");
+    callback();
+  }, 1000);
 }
 
-primeraOperacion_("",()=>{
-	segundaOperacion_("",()=>{
-		terceraOperacion_("",()=>{
-			console.log("todas las operaciones completas executadas")
-		})
-	})
-})
+primeraOperacion_("", () => {
+  segundaOperacion_("", () => {
+    terceraOperacion_("", () => {
+      console.log("todas las operaciones completas executadas");
+    });
+  });
+});
 
+console.log("====================== promesas  ======================");
 
+const miPromesa = new Promise((resolve, reject) => {
+  //hacer algo asincrono
+  let exito = true;
+  if (exito) {
+    resolve("la operacion fue exitosa");
+  } else {
+    reject("la operacion fue un fracaso");
+  }
+});
 
-
-console.log("====================== promesas  ======================")  
-
-const miPromesa = new Promise((resolve,reject)=>{
-	//hacer algo asincrono 
-	let exito = true
-	if(exito){
-		resolve("la operacion fue exitosa")
-	}else{
-		reject("la operacion fue un fracaso")
-	}
-})
-
-
- miPromesa
-.then((resultado)=>{
-	console.log(resultado)  // la operacion fue exitosa
-})
-.catch((error)=>{
-	console.log()  // Hubo un error en la operacion 
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+miPromesa
+  .then((resultado) => {
+    console.log(resultado); // la operacion fue exitosa
+  })
+  .catch((error) => {
+    console.log(); // Hubo un error en la operacion
+  });

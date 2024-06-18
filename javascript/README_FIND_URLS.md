@@ -40,30 +40,30 @@ const fs = require('fs');
 const path = require('path');
 
 // Archivo de salida
-const outputFilePath = path.join(__dirname, 'open_url_at_once', 'urls.txt');
+const outputFilePath = path.join(\_\_dirname, 'open_url_at_once', 'urls.txt');
 
 // Archivos a buscar
 const filesToSearch = [
-    'async-await.js',
-    'asynchronous_programming.js',
-    'callback_basic.js',
-    path.join('data-structure', 'stack', 'stack.js'),
-    path.join('data-structure', 'stack', 'stack.test.js'),
-    'funciones_generadoras.js',
-    'promise_basic.js',
-    'review.js'
-].map(file => path.join(__dirname, file));
+'async-await.js',
+'asynchronous_programming.js',
+'callback_basic.js',
+path.join('data-structure', 'stack', 'stack.js'),
+path.join('data-structure', 'stack', 'stack.test.js'),
+'funciones_generadoras.js',
+'promise_basic.js',
+'review.js'
+].map(file => path.join(\_\_dirname, file));
 
 // Función para buscar URLs en un archivo
 function findUrlsInFile(filePath) {
-    const data = fs.readFileSync(filePath, 'utf-8');
-    const urlRegex = /(http|https):\/\/[^\s/$.?#].[^\s]*/g;
-    return data.match(urlRegex) || [];
+const data = fs.readFileSync(filePath, 'utf-8');
+const urlRegex = /(http|https):\/\/[^\s/$.?#].[^\s]\*/g;
+return data.match(urlRegex) || [];
 }
 
 // Función principal para buscar URLs y actualizarlas en el archivo de salida
 function updateUrls() {
-    let allUrls = [];
+let allUrls = [];
 
     filesToSearch.forEach(file => {
         if (fs.existsSync(file)) {
@@ -86,6 +86,7 @@ function updateUrls() {
 
     // Escribir las URLs actualizadas en el archivo de salida
     fs.writeFileSync(outputFilePath, combinedUrls.join('\n'), 'utf-8');
+
 }
 
 // Ejecutar la función principal
@@ -104,13 +105,5 @@ Explicación del script:
 Ejecución del script:
 Guarda este script en un archivo llamado find_urls.js y ejecútalo con Node.js:
 
-====>>    node find_urls.js
+====>> node find_urls.js
 Esto actualizará el archivo urls.txt en la carpeta open_url_at_once con las nuevas URLs encontradas en los archivos especificados.
-
-
-
-
-
-
-
-

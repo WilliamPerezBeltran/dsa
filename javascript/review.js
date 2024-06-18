@@ -1,8 +1,10 @@
 //		https://es.javascript.info/async
 //		https://github.com/NWCalvank/fw-asyncjs
-console.log("again")
+console.log("again");
 
-console.log("======================== datos primitivos  ========================")
+console.log(
+  "======================== datos primitivos  ========================",
+);
 
 /*
 						datos primitivos 
@@ -48,29 +50,26 @@ let objecto = {
 }
 */
 
+console.log("======================== funciones  ========================");
 
-console.log("======================== funciones  ========================")
-
-function nombreDeLaFunction(){
-	//código a ejecutar
+function nombreDeLaFunction() {
+  //código a ejecutar
 }
 
-function saludar(){
-	console.log("hola")
+function saludar() {
+  console.log("hola");
 }
 
+let nombreDeLafuncion = function saludar() {
+  console.log("hola");
+};
+nombreDeLafuncion();
 
-let nombreDeLafuncion = function saludar(){
-	console.log("hola")
-}
-nombreDeLafuncion() 
+let nombre = () => {
+  console.log("hola arrow function");
+};
 
-let nombre = ()=>{
-	console.log("hola arrow function")
-}
-
-nombre()
-
+nombre();
 
 /*
 FUNCIONES COMO OBJECTOS
@@ -97,9 +96,9 @@ Las funciones en javascript tienen algunas propiedades y metodos utilicomo como:
 					fijado al valor proporcionado 
 */
 
-
-
-console.log("======================== declaracion de variables  ========================")
+console.log(
+  "======================== declaracion de variables  ========================",
+);
 
 /*
  
@@ -123,12 +122,12 @@ tipos de variables en javascript
 	* Puede ser redeclarada y reasignada.
 	* Soporta "hoisting", lo que significa que puede ser utilizada antes de su declaración.
 
-*/	
-	var x = 10
- 	if(true){
-		var x = 20  //misma variable	
-	}
-	console.log(x) // x => 20
+*/
+var x = 10;
+if (true) {
+  var x = 20; //misma variable
+}
+console.log(x); // x => 20
 
 /*
 
@@ -138,13 +137,13 @@ tipos de variables en javascript
 	* No soporto hoisting de la misma manera que var
 	
 	*/
-	let xx = 10
-	if(true){
-		let xx = 20 //variable diferente	
-		console.log(xx) // xx => 20
-	}
-	console.log(xx) // xx =>10
-	
+let xx = 10;
+if (true) {
+  let xx = 20; //variable diferente
+  console.log(xx); // xx => 20
+}
+console.log(xx); // xx =>10
+
 /*
 3. "const"
 	* Tiene alcance de bloque, es decir solo es accesible dentro del bloque donde se declara 
@@ -153,13 +152,12 @@ tipos de variables en javascript
 		modificadso, pero la referencia no puede cambiar.
 
 */
-	
-	const z = 10
-	// z = 20 Error: assignment to consta variable.
-	const obj = {a:1}
-	obj.a = 2 //valido
-	console.log(obj.a) // 2 
 
+const z = 10;
+// z = 20 Error: assignment to consta variable.
+const obj = { a: 1 };
+obj.a = 2; //valido
+console.log(obj.a); // 2
 
 /*
 
@@ -192,10 +190,9 @@ const				bloque		      		inicializada para declararse				No      			const x = 10
 
 */
 
-
 //	https://es.javascript.info/async
 
-console.log("======================== callback  ========================")
+console.log("======================== callback  ========================");
 /*
 
 Un callback es una funcion que se proporciona como argumento a otra funcion,
@@ -208,79 +205,71 @@ código en entornos de programción envent-driven, como javascript
 
 */
 
-function something(myCallback){
-	console.log("entra a something 111111")
-	myCallback()
+function something(myCallback) {
+  console.log("entra a something 111111");
+  myCallback();
 }
 
-function myCallback(){
-	console.log("mycallback")
-}
- 
-something(myCallback)
-
-//It is the most basic definition of what a callback is 
-
-	console.log("")
-	console.log("")
-
-let somet = (param,myCall)=>{
-	console.log("entro a somet")
-	console.log(`${param}`)
-	myCall()
-
+function myCallback() {
+  console.log("mycallback");
 }
 
-let myCall = ()=>{
-	console.log("myCall")
-}
+something(myCallback);
 
- somet("hola hsoy un parametro",myCall)
+//It is the most basic definition of what a callback is
 
+console.log("");
+console.log("");
 
-console.log("")
-console.log("")
+let somet = (param, myCall) => {
+  console.log("entro a somet");
+  console.log(`${param}`);
+  myCall();
+};
 
-// Callback anonimo 
+let myCall = () => {
+  console.log("myCall");
+};
 
-doingSomething = function(){
-    console.log("Callback anónimo ejecutado!");
-}
+somet("hola hsoy un parametro", myCall);
 
-doingSomething()
+console.log("");
+console.log("");
 
+// Callback anonimo
 
+doingSomething = function () {
+  console.log("Callback anónimo ejecutado!");
+};
 
-doingS = ()=>{console.log("doingS arrow function")}
-doingS() 
+doingSomething();
 
+doingS = () => {
+  console.log("doingS arrow function");
+};
+doingS();
 
-
-
-doingSs = ()=>console.log("doingSs arrow function")
-doingSs() 
-
-
+doingSs = () => console.log("doingSs arrow function");
+doingSs();
 
 //Ejemplo práctico
-function obtenerDatos(callback){
-		const datos = {name:"paul graham", age:51}
-		callback(datos)
+function obtenerDatos(callback) {
+  const datos = { name: "paul graham", age: 51 };
+  callback(datos);
 }
 
-function datos(datos){
-	console.log(`get data ${datos}`)
+function datos(datos) {
+  console.log(`get data ${datos}`);
 }
 
+obtenerDatos(datos);
 
-obtenerDatos(datos)
-
-function dato(data){
-	console.log(`datos obtenidos: ${data}`)
+function dato(data) {
+  console.log(`datos obtenidos: ${data}`);
 }
 
-console.log("")
-console.log("")
+console.log("");
+console.log("");
 
 /*
  
@@ -296,50 +285,51 @@ Function
 
 	*/
 
-let isTrue = true
-let valorNullo = null
-let sinValor = undefined
-let number = 500
+let isTrue = true;
+let valorNullo = null;
+let sinValor = undefined;
+let number = 500;
 let enteroGrande = 1234567890123456789012345678901234567890n;
-let myString = "my string"
-let simbolo = Symbol("descriptcion")
+let myString = "my string";
+let simbolo = Symbol("descriptcion");
 let objecto = {
-	"nombre": "will",
-	"age": 23
+  nombre: "will",
+  age: 23,
+};
+
+console.log(typeof isTrue);
+console.log(typeof valorNullo);
+console.log(typeof sinValor);
+console.log(typeof number);
+console.log(typeof enteroGrande);
+console.log(typeof myString);
+console.log(typeof simbolo);
+console.log(typeof objecto);
+
+function myDatos(data) {
+  console.log(Object.prototype.toString.call(data));
+  //let tipo =  Object.prototype.toString.call(data) == "[object Array]"
+  let tipo = Object.prototype.toString.call(data);
+  switch (tipo) {
+    case "[object Array]":
+      for (const item in data) {
+        console.log(item);
+      }
+      break;
+    case "[object Object]":
+      for (const property in data) {
+        console.log(`${property} ${data[property]}`);
+      }
+      break;
+    default:
+      console.log(
+        "Lo lamentamos, por el momento no disponemos de " + tipo + ".",
+      );
+  }
 }
 
-console.log(typeof isTrue)
-console.log(typeof  valorNullo)
-console.log(typeof sinValor)
-console.log(typeof number)
-console.log(typeof enteroGrande)
-console.log(typeof myString)
-console.log(typeof simbolo)
-console.log(typeof objecto)
-
-function myDatos(data){
-	console.log(Object.prototype.toString.call(data))
-	//let tipo =  Object.prototype.toString.call(data) == "[object Array]"
-	let tipo = Object.prototype.toString.call(data) 
-	switch (tipo) {
-  	case "[object Array]":
-			for (const item in data){
-				console.log(item)	
-			}
-    	break;
-  	case "[object Object]":
-			for (const property in data){
-				console.log(`${property} ${data[property]}`)	
-			}
-    	break;
-  	default:
-    console.log("Lo lamentamos, por el momento no disponemos de " + tipo + ".");
-	}
-}
-
-
-myDatos([1,2,3,4,5,6,7,8,9])
-myObj = new Object()
+myDatos([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+myObj = new Object();
 myObj.type = "Sintaxis de puntos";
 myObj["fecha de creación"] = "Cadena con espacios";
 myObj["str"] = "Valor de cadena";
@@ -347,14 +337,13 @@ myObj["rand"] = "Número aleatorio";
 myObj["obj"] = "Object";
 myObj[""] = "Incluso una cadena vacía";
 
-
-myDatos(true)
-myDatos(null)
-myDatos(undefined)
-myDatos("string")
-myDatos({})
-myDatos(simbolo)
-myDatos(myObj)
+myDatos(true);
+myDatos(null);
+myDatos(undefined);
+myDatos("string");
+myDatos({});
+myDatos(simbolo);
+myDatos(myObj);
 
 /*
 Object.prototype.toString.call(data) 
@@ -368,8 +357,9 @@ Object.prototype.toString.call(data)
 
 */
 
-
-console.log("======================== handle HTTP request   ========================")
+console.log(
+  "======================== handle HTTP request   ========================",
+);
 
 //		https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/
 
@@ -377,58 +367,38 @@ console.log("======================== handle HTTP request   ====================
 
 //		1. usen XMLHttpRequest()
 // npm install xhr2
-var XMLHttpRequest = require('xhr2');
-const Http = new XMLHttpRequest()
-const url = "https://jsonplaceholder.typicode.com/posts"
-Http.open("GET",url)
-Http.send()
-Http.onreadystatechange = ()=>{
-	console.log("using: new XMLHttpRequest()")
-	//console.log(Http.responseText)
+var XMLHttpRequest = require("xhr2");
+const Http = new XMLHttpRequest();
+const url = "https://jsonplaceholder.typicode.com/posts";
+Http.open("GET", url);
+Http.send();
+Http.onreadystatechange = () => {
+  console.log("using: new XMLHttpRequest()");
+  //console.log(Http.responseText)
+};
+
+console.log("======================== callback  ========================");
+
+console.log("************");
+console.log("************");
+console.log("************");
+console.log("************");
+console.log("************");
+
+function getData(callback) {
+  const Http = new XMLHttpRequest();
+  const url = "https://jsonplaceholder.typicode.com/posts";
+  Http.open("GET", url);
+  Http.send();
+  Http.onreadystatechange = () => {
+    callback(Http.responseText);
+  };
 }
 
+let callback = (datos) => {
+  console.log("datosssss:");
+  console.log(typeof dato);
+  console.log(typeof JSON.stringify(dato));
+};
 
-console.log("======================== callback  ========================")
-
-console.log("************")
-console.log("************")
-console.log("************")
-console.log("************")
-console.log("************")
-
-function getData(callback){
-const Http = new XMLHttpRequest()
-const url = "https://jsonplaceholder.typicode.com/posts"
-Http.open("GET",url)
-Http.send()
-Http.onreadystatechange = ()=>{
- 	callback(Http.responseText)	
-}
-}
-
-let callback = (datos) =>{
-	console.log("datosssss:")
-	console.log(typeof dato)
-	console.log(typeof JSON.stringify(dato))
-}
-
-
-getData(callback)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+getData(callback);
