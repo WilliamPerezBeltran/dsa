@@ -1,2 +1,9 @@
 https://github.com/MostlyAdequate/mostly-adequate-guide/tree/master
 https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch01#introductions
+https://drboolean.gitbooks.io/mostly-adequate-guide-old/content/ch1.html#a-brief-encounter
+https://github.com/getify/Functional-Light-JS/blob/master/README.md
+https://frontendmasters.com/teachers/kyle-simpson/
+https://frontendmasters.com/courses/functional-javascript-v3/
+https://www.pluralsight.com/search?q=kyle%20simpson&categories=all
+https://blog.tomduncalf.com/posts/functional-programming-fundamentals-talk/
+https://news.ycombinator.com/item?id=17072662
