@@ -8,3 +8,14 @@ https://stackoverflow.com/questions/265392/why-is-lazy-evaluation-useful
 https://www.digitalocean.com/community/tutorials/understanding-generators-in-javascript-es
 https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/
 https://www.javascripttutorial.net/es6/javascript-promises
+https://github.com/MostlyAdequate/mostly-adequate-guide/tree/master
+https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch01#introductions
+https://drboolean.gitbooks.io/mostly-adequate-guide-old/content/ch1.html#a-brief-encounter
+https://github.com/getify/Functional-Light-JS/blob/master/README.md
+https://frontendmasters.com/teachers/kyle-simpson/
+https://frontendmasters.com/courses/functional-javascript-v3/
+https://www.pluralsight.com/search?q=kyle%20simpson&categories=all
+https://blog.tomduncalf.com/posts/functional-programming-fundamentals-talk/
+https://news.ycombinator.com/item?id=17072662
+https://egghead.io/courses/professor-frisby-introduces-composable-functional-javascript
+https://egghead.io/lessons/javascript-linear-data-flow-with-container-style-types-box
