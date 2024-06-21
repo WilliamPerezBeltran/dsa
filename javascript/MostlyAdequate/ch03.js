@@ -122,6 +122,24 @@ const memoize = (f)=>{
 }
 const squareNumber_ = memoize(x => x * x)
 
+console.log("======")
+
+const memoize = (f)=>{
+	const cache = {}
+	return (...args)=>{
+		const argStr = JSON.stringify(args)
+		cache[argStr] = cache[argStr] || f(...args)
+		return cache[argStr]
+	}
+}
+
+
+
+
+
+
+
+
 console.log(squareNumber_(4))
 console.log(squareNumber_(4))
 console.log(squareNumber_(5))
