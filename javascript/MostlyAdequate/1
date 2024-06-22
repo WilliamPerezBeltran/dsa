@@ -1,0 +1,58 @@
+console.log("============== currying ===============")
+
+/*
+ *
+Currying se basa en la idea de que cualquier función que tome 
+varios argumentos se puede reescribir como una serie de funciones anidadas 
+que toman cada una un argumento y devuelven otra función:
+
+agregar(X, Y, Z) => x + y + z    => funcion normal 
+agregar(X, Y, Z) => agregar(x)(y)(z) => funcion currificada 
+ *
+ * */
+
+
+const add = x => y => x + y
+const increment = add(1)
+const addTen = add(10) 
+
+Currying se basa en la idea de que cualquier función que tome 
+varios argumentos se puede reescribir como una serie de funciones anidadas 
+que toman cada una un argumento y devuelven otra función:
+ 
+
+
+// curry :: ((a, b, ...) -> c) -> a -> b -> ... -> c
+function curry(fn) {
+  const arity = fn.length;
+
+  return function $curry(...args) {
+    if (args.length < arity) {
+      return $curry.bind(null, ...args);
+    }
+
+    return fn.call(null, ...args);
+	}
+	
+const match = curry((what, s) => s.match(what));
+const replace = curry((what, replacement, s) => s.replace(what, replacement));
+const filter = curry((f, xs) => xs.filter(f));
+const map = curry((f, xs) => xs.map(f));
+
+
+const match = curry((what, s) => s.match(what));
+const replace = curry((what, replacement, s) => s.replace(what, replacement));
+const filter = curry((f, xs) => xs.filter(f));
+const map = curry((f, xs) => xs.map(f));
+console.log(addTen(2))
+
+
+
+
+console.log("============== currying ===============")
+console.log("============== currying ===============")
+console.log("============== currying ===============")
+console.log("============== currying ===============")
+console.log("============== currying ===============")
+console.log("============== currying ===============")
+console.log("============== currying ===============")

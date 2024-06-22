@@ -6,6 +6,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "immutable": "^4.3.6",
     "xhr2": "^0.2.1"
   }
 }
