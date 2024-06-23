@@ -60,3 +60,9 @@ console.log(removeStringsWitchoutRs(["rock and roll","jungle","whoo","jazz","jun
 
 //	What's demonstrated here is the ability to "pre-load" a function with an argument or two 
 //	in order to receive a new function that remembers those arguments.
+
+const getChildren = x => x.childNodes;
+const allTheChildren = map(getChildren);
+
+
+
