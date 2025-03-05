@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Example</title>
+</head>
+<body>
+  <div id="parent1">
+    <p>Child 1</p>
+    <p>Child 2</p>
+  </div>
+  <div id="parent2">
+    <p>Child A</p>
+    <p>Child B</p>
+  </div>
+
+  <script>
+    // Definimos la función getChildren
+    const getChildren = x => x.childNodes;
+
+    // Definimos la función allTheChildren usando map
+    const allTheChildren = elements => Array.prototype.map.call(elements, getChildren);
+
+    // Seleccionamos todos los elementos div en la página
+    const parentElements = document.querySelectorAll('div');
+
+    // Usamos allTheChildren para obtener los nodos hijos de todos los elementos div
+    const childrenNodes = allTheChildren(parentElements);
+
+    // childrenNodes ahora contiene una matriz de nodos hijos para cada div
+    console.log(childrenNodes);
+  </script>
+</body>
+</html>
+
